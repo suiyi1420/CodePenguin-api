@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.SysClassMapper">
+    <resultMap id="classMapResult" type="Map">
+        <id property="classId" column="class_id"/>
+        <result property="className" column="class_name"/>
+        <result property="classRelName" column="class_rel_name"/>
+        <result property="teacherName" column="teacher_name"/>
+        <result property="subjectTypeName" column="subjectTypeName"/>
+        <result property="open_time" column="open_time"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <resultMap id="classResult" type="SysClass">
+        <id property="classId" column="class_id"/>
+        <result property="className" column="class_name"/>
+        <result property="classRelName" column="class_rel_name"/>
+        <result property="subjectTypeId" column="subject_type_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <select id="getClassList" parameterType="SysQueryDto" resultType="Map">
+        select t.*,su.subject_name,u.nick_name teacher,us.nick_name creater,ifnull(st.student_num,0) student_num from sys_class t
+        left join sys_user u on t.teacher_id=u.user_id
+        left join (select user_id, nick_name from sys_user ) us on t.creater_id=us.user_id
+        left join sys_subject su on t.subject_id=su.subject_id
+        left join (SELECT class_id ,count(*) student_num from sys_class_student GROUP BY class_id) st on st.class_id=t.id
+        where t.status=1
+        <if test="id !=null and id!=0">
+            and t.subject_id=#{id}
+        </if>
+        <bind name="pattern" value="'%' + keyWord + '%'" />
+        <if test="keyWord !=null and keyWord!=''" > and t.class_name like #{pattern}</if>
+        <if test="startTime !=null and startTime!=''">
+            and t.class_time &gt;= #{startTime}
+        </if>
+        <if test="endTime !=null and endTime!=''">
+            and t.class_time &lt;= #{endTime}
+        </if>
+        <bind name="pattern2" value="'%' + teacher + '%'" />
+        <if test="teacher !=null and teacher!=''" > and u.nick_name like #{pattern2}</if>
+    </select>
+    <select id="getClassSubjectList" parameterType="SysQueryDto" resultType="Map">
+        select t.*,i.name from sys_class_subject t left join sys_subject_info i on i.subject_info_id=t.subject_info_id
+        where t.status=1
+        <if test="id !=null and id!=0">
+            and t.class_id = #{id}
+        </if>
+        <if test="startTime !=null and startTime!=''">
+            and t.open_time &gt;= #{startTime}
+        </if>
+        <if test="endTime !=null and endTime!=''">
+            and t.open_time &lt;= #{endTime}
+        </if>
+        order by t.id asc
+    </select>
+    <select id="getSubjectSubsection" parameterType="int" resultType="Map">
+        select t.* from sys_subject_subsection t
+        where t.status=1 and t.subject_info_id=#{id}
+
+        order by t.id asc
+    </select>
+
+    <select id="getClassStudentList" parameterType="int" resultType="Map">
+        select c.id,u.user_id,u.user_name,u.nick_name,u.phonenumber from sys_user u
+        left join sys_class_student c on c.user_id=u.user_id
+        where c.status=1 and c.class_id=#{id}
+        order by c.id asc
+    </select>
+
+    <select id="getAllStudentList" parameterType="SysQueryDto" resultType="Map">
+        select u.user_id,u.user_name,u.nick_name,u.phonenumber from sys_user u
+        left join sys_user_role ur on ur.user_id=u.user_id
+        left join sys_role r on r.role_id=ur.role_id
+        where  r.role_id=#{id}
+        <bind name="pattern" value="'%' + keyWord + '%'" />
+        <if test="keyWord !=null and keyWord!=''" > and u.nick_name like #{pattern}</if>
+        order by u.user_id asc
+    </select>
+
+
+
+    <select id="getClassByUser" parameterType="Long" resultMap="classResult">
+        select t.class_id,t.class_name,t.subject_type_id,t.user_id,t.create_time from sys_class t where t.status=1
+        <if test="userId !=1">
+            and t.user_id=#{userId}
+        </if>
+        order by t.create_time desc
+
+    </select>
+
+    <update id="updateClass" parameterType="SysClass">
+        update sys_class
+        <set>
+            <if test="class_name != null and class_name != ''">class_name = #{class_name},</if>
+            <if test="class_rel_name != null and class_rel_name != ''">class_rel_name = #{class_rel_name},</if>
+            <if test="teacher_id != null and teacher_id != 0">teacher_id = #{teacher_id},</if>
+        </set>
+        where id = #{id}
+    </update>
+    <update id="updateClassSubject" parameterType="SysClassSubject">
+        update sys_class_subject
+        <set>
+            <if test="open_time != null and open_time != ''">open_time = #{open_time},</if>
+            <if test="rel_name != null and rel_name != ''">rel_name = #{rel_name},</if>
+            <if test="subject_info_id != null and subject_info_id != 0">subject_info_id = #{subject_info_id},</if>
+            <if test="status != null ">status = #{status},</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <insert id="insertClass" parameterType="SysClass">
+        insert into sys_class(
+
+        <if test="class_name != null and class_name != ''">class_name,</if>
+        <if test="class_rel_name != null and class_rel_name != ''">class_rel_name,</if>
+        <if test="subject_id != null and subject_id != 0">subject_id,</if>
+
+        <if test="teacher_id != null and teacher_id != 0">teacher_id,</if>
+        <if test="creater_id != null and creater_id != 0">creater_id,</if>
+        <if test="class_time != null and class_time != ''">class_time,</if>
+        create_time,status
+        )values(
+
+        <if test="class_name != null and class_name != ''">#{class_name},</if>
+        <if test="subject_id != null and subject_id != 0">#{subject_id},</if>
+
+        <if test="teacher_id != null and teacher_id != 0">#{teacher_id},</if>
+        <if test="creater_id != null and creater_id != 0">#{teacher_id},</if>
+        <if test="class_time != null and class_time != ''">#{class_time},</if>
+        now(),1
+        )
+    </insert>
+    <insert id="insertClassSubject" parameterType="SysClassSubject" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_class_subject(
+
+        <if test="class_id != null and class_id != 0">class_id,</if>
+        <if test="open_time != null and open_time != ''">open_time,</if>
+        <if test="rel_name != null and rel_name != ''">rel_name,</if>
+        <if test="subject_info_id != null and subject_info_id != 0">subject_info_id,</if>
+        status
+        )values(
+
+        <if test="class_id != null and class_id != 0">#{class_id},</if>
+        <if test="open_time != null and open_time != ''">#{open_time},</if>
+        <if test="rel_name != null and rel_name != ''">#{rel_name},</if>
+        <if test="subject_info_id != null and subject_info_id != 0">#{subject_info_id},</if>
+        1
+        )
+    </insert>
+
+    <insert id="insertClassStudent" parameterType="SysClassStudent" >
+        insert into sys_class_student(
+
+        <if test="class_id != null and class_id != 0">class_id,</if>
+        <if test="user_id != null and user_id != ''">user_id,</if>
+
+        status
+        )values(
+
+        <if test="class_id != null and class_id != 0">#{class_id},</if>
+        <if test="user_id != null and user_id != 0">#{user_id},</if>
+
+        1
+        )
+    </insert>
+
+    <insert id="insertStudentSubject" parameterType="SysClassStudent" >
+        insert into sys_student_subject(class_id,user_id,subject_info_id,role,status
+        )values(
+        <if test="class_id != null and class_id != 0">#{class_id},</if>
+        <if test="user_id != null and user_id != 0">#{user_id},</if>
+        <if test="subject_info_id != null and subject_info_id != 0">#{subject_info_id},</if>
+        <if test="user_id != null ">#{role},</if>
+
+        0
+        )
+    </insert>
+
+    <delete id="deleteClassById" parameterType="Long">
+        update sys_class set status = 0 where id = #{id}
+    </delete>
+
+    <delete id="deleteClassStudent" parameterType="Long">
+        update sys_class_student set status = 0 where id = #{id};
+
+    </delete>
+    <delete id="deleteStudentSubject" parameterType="SysStudentSubject">
+        delete from sys_student_subject where user_id=#{user_id} and class_id=#{class_id}
+    </delete>
+
+</mapper>
+
+

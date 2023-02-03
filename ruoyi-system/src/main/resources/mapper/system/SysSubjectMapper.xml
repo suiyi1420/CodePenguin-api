@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.SysSubjectMapper">
+
+
+    <resultMap id="subjectInfoResult" type="SysSubjectInfo">
+
+        <id property="subjectInfoId" column="subject_info_id"/>
+        <result property="subjectId" column="subject_id"/>
+        <result property="name" column="name"/>
+        <result property="context" column="context"/>
+        <result property="knowledge" column="knowledge"/>
+        <result property="updateText" column="update_text"/>
+        <result property="plannedTime" column="planned_time"/>
+        <result property="status" column="status"/>
+        <result property="fileUrl" column="file_url"/>
+        <result property="videoUrl" column="video_url"/>
+    </resultMap>
+
+    <select id="getSubjectInfo" parameterType="SysQueryDto" resultType="Map">
+        select t.* from sys_subject_info t where t.subject_id=#{id} and t.status=1
+        <bind name="pattern" value="'%' + keyWord + '%'" />
+        <if test="keyWord !=null and keyWord!=''" > and name like #{pattern}</if>
+        order by t.subject_info_id asc
+    </select>
+    <select id="getSubjectTypeList"  resultType="SysSubjectType">
+        select t.* from sys_subject_type t where  t.status=1
+        order by t.subject_type_id asc
+
+    </select>
+    <select id="getSubject" parameterType="String" resultType="sysSubject">
+        select t.* from sys_subject t where t.status=1
+        <if test="subjectTypeId != null and subjectTypeId !=0"> and t.subject_type_id = #{subjectTypeId}</if>
+
+        order by t.subject_id asc
+
+    </select>
+
+    <update id="updateSubjectInfo" parameterType="SysSubjectInfo">
+        update sys_subject_info
+        <set>
+            <if test="subjectTypeId != null ">subject_type_id = #{subjectTypeId},</if>
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="context != null and context != ''">context = #{context},</if>
+            <if test="knowledge != null and knowledge != ''">knowledge = #{knowledge},</if>
+            <if test="updateText != null and updateText != ''">update_text = #{updateText},</if>
+            <if test="plannedTime != null and plannedTime != ''">planned_time = #{plannedTime},</if>
+            <if test="status != null ">status=#{status} ,</if>
+            <if test="fileUrl != null and fileUrl != ''">file_url = #{fileUrl},</if>
+            <if test="videoUrl != null and videoUrl != ''">video_url = #{videoUrl},</if>
+        </set>
+        where subject_info_id = #{subjectInfoId}
+    </update>
+
+    <insert id="insertSubjectInfo" parameterType="SysSubjectInfo" useGeneratedKeys="true" keyProperty="subjectInfoId">
+        insert into sys_subject_info(
+
+        <if test="subjectTypeId != null ">subject_type_id ,</if>
+        <if test="name != null and name != ''">name ,</if>
+        <if test="context != null and context != ''">context ,</if>
+        <if test="knowledge != null and knowledge != ''">knowledge ,</if>
+        <if test="updateText != null and updateText != ''">update_text ,</if>
+        <if test="plannedTime != null and plannedTime != ''">planned_time ,</if>
+        <if test="status != null ">status ,</if>
+        <if test="fileUrl != null and fileUrl != ''">file_url ,</if>
+        <if test="videoUrl != null and videoUrl != ''">video_url </if>
+
+        )values(
+
+        <if test="subjectTypeId != null "> #{subjectTypeId},</if>
+        <if test="name != null and name != ''">#{name},</if>
+        <if test="context != null and context != ''"> #{context},</if>
+        <if test="knowledge != null and knowledge != ''"> #{knowledge},</if>
+        <if test="updateText != null and updateText != ''"> #{updateText},</if>
+        <if test="plannedTime != null and plannedTime != ''"> #{plannedTime},</if>
+        <if test="status != null ">#{status} ,</if>
+        <if test="fileUrl != null and fileUrl != ''"> #{fileUrl},</if>
+        <if test="videoUrl != null and videoUrl != ''"> #{videoUrl}</if>
+
+        )
+    </insert>
+
+
+
+</mapper>
+
+
