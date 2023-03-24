@@ -1,21 +1,28 @@
 package com.ruoyi.system.service;
 
-import com.ruoyi.system.domain.SysQueryDto;
-import com.ruoyi.system.domain.SysSubject;
-import com.ruoyi.system.domain.SysSubjectInfo;
-import com.ruoyi.system.domain.SysSubjectType;
+import com.ruoyi.system.domain.*;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ISysSubjectService {
 
     public List<SysSubjectInfo> getSubjectInfo(SysQueryDto sysQueryDto);
     public List<SysSubject> getSubject(String subjectTypeId);
+    public List<SysSubjectSubsection> getSubsectionList(SysQueryDto sysQueryDto);
 
     public List<SysSubjectType> getSubjectTypeList();
 
     public int updateSubjectInfo(SysSubjectInfo sysSubjectInfo);
-
+    public int updateSubjectSubsection(SysSubjectSubsection sysSubjectSubsection);
     public int insertSubjectInfo(SysSubjectInfo sysSubjectInfo);
+    public int insertSubjectSubsection(SysSubjectSubsection sysSubjectSubsection);
+    public int insertSubject(SysSubject sysSubject);
+    public int updateSubject(SysSubject sysSubject);
+    public int deleteSubject(int id);
+    public List<SysSubjectType> getSubjectTypeByUserList(Integer userId);
+    public List<SysSubject> getSubjectListByUser(Integer userId,Integer subjectTypeId);
+    public List<SysSubjectInfo> getSubjectInfoListByUser(Map<String,Object> map);
+    public int deleteSubjectSubsection(int id);
 
 }

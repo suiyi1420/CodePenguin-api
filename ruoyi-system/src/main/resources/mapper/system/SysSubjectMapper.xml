@@ -21,67 +21,120 @@
 
     <select id="getSubjectInfo" parameterType="SysQueryDto" resultType="Map">
         select t.* from sys_subject_info t where t.subject_id=#{id} and t.status=1
-        <bind name="pattern" value="'%' + keyWord + '%'" />
-        <if test="keyWord !=null and keyWord!=''" > and name like #{pattern}</if>
+        <bind name="pattern" value="'%' + keyWord + '%'"/>
+        <if test="keyWord !=null and keyWord!=''">and name like #{pattern}</if>
         order by t.subject_info_id asc
     </select>
-    <select id="getSubjectTypeList"  resultType="SysSubjectType">
-        select t.* from sys_subject_type t where  t.status=1
+    <select id="getSubsectionList" parameterType="SysQueryDto" resultType="SysSubjectSubsection">
+        select t.* from sys_subject_subsection t where t.subject_info_id=#{id} and t.status=1
+        <bind name="pattern" value="'%' + keyWord + '%'"/>
+        <if test="keyWord !=null and keyWord!=''">and name like #{pattern}</if>
+    </select>
+    <select id="getSubjectTypeList" resultType="SysSubjectType">
+        select t.*
+        from sys_subject_type t
+        where t.status = 1
         order by t.subject_type_id asc
 
     </select>
     <select id="getSubject" parameterType="String" resultType="sysSubject">
         select t.* from sys_subject t where t.status=1
-        <if test="subjectTypeId != null and subjectTypeId !=0"> and t.subject_type_id = #{subjectTypeId}</if>
+        <if test="subjectTypeId != null and subjectTypeId !=0">and t.subject_type_id = #{subjectTypeId}</if>
 
         order by t.subject_id asc
 
     </select>
 
+    <select id="getSubjectTypeByUserList" parameterType="Integer" resultType="SysSubjectType">
+        select t.*
+        from sys_subject_type t
+                 left join sys_subject sst on t.subject_type_id = sst.subject_type_id
+        where sst.subject_id in (select DISTINCT(subject_id) from sys_student_subject where user_id = #{userId})
+        GROUP BY t.subject_type_id;
+    </select>
+
+    <select id="getSubjectListByUser" parameterType="Map" resultType="SysSubject">
+        select t.*
+        from sys_subject t
+        where t.subject_id in (select DISTINCT(subject_id) from sys_student_subject where user_id = #{user_id}) and subject_type_id=#{subject_type_id};
+    </select>
+
+    <select id="getSubjectInfoListByUser" parameterType="Map" resultType="SysSubjectInfo">
+        select t.*
+        from sys_subject_info t
+                 inner join sys_student_subject s on t.subject_info_id = s.subject_info_id
+        where s.user_id = #{userId}
+          and s.subject_id = #{subjectId}
+          and s.`status` = 0
+
+    </select>
+    <update id="updateSubject" parameterType="SysSubject">
+        update sys_subject
+        <set>
+            subject_name=#{subject_name},subject_context=#{subject_context},class_time=#{class_time},image=#{image}
+        </set>
+        where subject_id=#{subject_id}
+    </update>
     <update id="updateSubjectInfo" parameterType="SysSubjectInfo">
         update sys_subject_info
         <set>
-            <if test="subjectTypeId != null ">subject_type_id = #{subjectTypeId},</if>
+
             <if test="name != null and name != ''">name = #{name},</if>
             <if test="context != null and context != ''">context = #{context},</if>
             <if test="knowledge != null and knowledge != ''">knowledge = #{knowledge},</if>
-            <if test="updateText != null and updateText != ''">update_text = #{updateText},</if>
-            <if test="plannedTime != null and plannedTime != ''">planned_time = #{plannedTime},</if>
+            <if test="knowledge_num != null and knowledge_num != ''">knowledge_num = #{knowledge_num},</if>
+            <if test="update_text != null and update_text != ''">update_text = #{update_text},</if>
+            <if test="planned_time != null and planned_time != ''">planned_time = #{planned_time},</if>
             <if test="status != null ">status=#{status} ,</if>
-            <if test="fileUrl != null and fileUrl != ''">file_url = #{fileUrl},</if>
-            <if test="videoUrl != null and videoUrl != ''">video_url = #{videoUrl},</if>
+            <if test="url != null and url != ''">url=#{url} ,</if>
+            <if test="type != null and type != ''">type=#{type} </if>
+
         </set>
-        where subject_info_id = #{subjectInfoId}
+        where subject_info_id = #{subject_info_id}
+    </update>
+    <update id="updateSubjectSubsection" parameterType="SysSubjectSubsection">
+        update sys_subject_subsection
+        <set>
+
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="video_url != null and video_url != ''">video_url = #{video_url},</if>
+            <if test="file_url != null and file_url != ''">file_url = #{file_url},</if>
+
+            <if test="status != null ">status=#{status}</if>
+
+        </set>
+        where id = #{id}
     </update>
 
-    <insert id="insertSubjectInfo" parameterType="SysSubjectInfo" useGeneratedKeys="true" keyProperty="subjectInfoId">
-        insert into sys_subject_info(
+    <insert id="insertSubject" parameterType="SysSubject">
+        insert into sys_subject(subject_type_id, subject_name, subject_context, class_time, status, image)
+        values (#{subject_type_id}, #{subject_name}, #{subject_context}, #{class_time}, 1, #{image})
 
-        <if test="subjectTypeId != null ">subject_type_id ,</if>
-        <if test="name != null and name != ''">name ,</if>
-        <if test="context != null and context != ''">context ,</if>
-        <if test="knowledge != null and knowledge != ''">knowledge ,</if>
-        <if test="updateText != null and updateText != ''">update_text ,</if>
-        <if test="plannedTime != null and plannedTime != ''">planned_time ,</if>
-        <if test="status != null ">status ,</if>
-        <if test="fileUrl != null and fileUrl != ''">file_url ,</if>
-        <if test="videoUrl != null and videoUrl != ''">video_url </if>
-
-        )values(
-
-        <if test="subjectTypeId != null "> #{subjectTypeId},</if>
-        <if test="name != null and name != ''">#{name},</if>
-        <if test="context != null and context != ''"> #{context},</if>
-        <if test="knowledge != null and knowledge != ''"> #{knowledge},</if>
-        <if test="updateText != null and updateText != ''"> #{updateText},</if>
-        <if test="plannedTime != null and plannedTime != ''"> #{plannedTime},</if>
-        <if test="status != null ">#{status} ,</if>
-        <if test="fileUrl != null and fileUrl != ''"> #{fileUrl},</if>
-        <if test="videoUrl != null and videoUrl != ''"> #{videoUrl}</if>
-
-        )
     </insert>
 
+    <insert id="insertSubjectSubsection" parameterType="SysSubjectSubsection">
+        insert into sys_subject_subsection(subject_info_id, name, video_url, file_url, status)
+        values (#{subject_info_id}, #{name}, #{video_url}, #{file_url}, 1)
+
+    </insert>
+
+    <insert id="insertSubjectInfo" parameterType="SysSubjectInfo">
+        insert into sys_subject_info(subject_id, name, context, knowledge, update_text, knowledge_num, planned_time,
+                                     status,url,type)
+        values (#{subject_id}, #{name}, #{context}, #{knowledge}, #{update_text}, #{knowledge_num}, #{planned_time}, 1,#{url},#{type})
+    </insert>
+
+    <delete id="deleteSubjectSubsection" parameterType="int">
+        delete
+        from sys_subject_subsection
+        where id = #{id}
+    </delete>
+    <delete id="deleteSubject" parameterType="int">
+        update
+            sys_subject
+        set status=0
+        where subject_id = #{id}
+    </delete>
 
 
 </mapper>

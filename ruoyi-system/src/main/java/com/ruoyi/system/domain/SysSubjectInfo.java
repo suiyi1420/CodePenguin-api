@@ -13,6 +13,8 @@ public class SysSubjectInfo {
     private int knowledge_num;
     private int planned_time;
     private String status;
+    private String url;
+    private int type;//0.编程小节 1.视频小节 2.课程视频
 
 
 

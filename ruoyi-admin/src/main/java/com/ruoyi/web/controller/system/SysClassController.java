@@ -34,7 +34,7 @@ public class SysClassController extends BaseController {
     }
 
     //根据班级查询该班级的课程列表
-    @PreAuthorize("@ss.hasPermi('system:class:list')")
+    @PreAuthorize("@ss.hasPermi('system:class_subject:list')")
     @PostMapping("/list/subject")
     public TableDataInfo getClassSubjectList(@RequestBody SysQueryDto sysQueryDto)
     {
@@ -100,7 +100,7 @@ public class SysClassController extends BaseController {
 
 
     //编辑班级的课程
-    @PreAuthorize("@ss.hasPermi('system:class:edit')")
+    @PreAuthorize("@ss.hasPermi('system:class_subject:edit')")
     @PostMapping("/subject/edit")
     public AjaxResult editClassSubject(@Validated @RequestBody SysClassSubject sysClassSubject)
     {
@@ -108,7 +108,7 @@ public class SysClassController extends BaseController {
     }
 
     //添加班级的课程
-    @PreAuthorize("@ss.hasPermi('system:class:add')")
+    @PreAuthorize("@ss.hasPermi('system:class_subject:add')")
     @PostMapping("/subject/add")
     public AjaxResult addClassSubject(@Validated @RequestBody SysClassSubject sysClassSubject)
     {

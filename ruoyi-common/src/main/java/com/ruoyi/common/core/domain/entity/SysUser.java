@@ -88,10 +88,37 @@ public class SysUser extends BaseEntity
 
     /** 角色ID */
     private Long roleId;
+    private int teacher;
+    private int student;
+    private Long creater_id;
 
     public SysUser()
     {
 
+    }
+
+    public Long getCreater_id() {
+        return creater_id;
+    }
+
+    public void setCreater_id(Long creater_id) {
+        this.creater_id = creater_id;
+    }
+
+    public int getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(int teacher) {
+        this.teacher = teacher;
+    }
+
+    public int getStudent() {
+        return student;
+    }
+
+    public void setStudent(int student) {
+        this.student = student;
     }
 
     public SysUser(Long userId)

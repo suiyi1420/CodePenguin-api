@@ -27,6 +27,8 @@ public class RuoYiConfig
     /** 上传路径 */
     private static String profile;
 
+    private static String subjectFile;
+
     /** 获取地址开关 */
     private static boolean addressEnabled;
 
@@ -76,6 +78,15 @@ public class RuoYiConfig
     public static String getProfile()
     {
         return profile;
+    }
+
+
+    public static String getSubjectFile() {
+        return subjectFile;
+    }
+
+    public void setSubjectFile(String subjectFile) {
+        RuoYiConfig.subjectFile = subjectFile;
     }
 
     public void setProfile(String profile)
@@ -132,4 +143,6 @@ public class RuoYiConfig
     {
         return getProfile() + "/upload";
     }
+
+    public static String getSubjectFilePath(){return getSubjectFile();}
 }

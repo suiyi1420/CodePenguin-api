@@ -10,4 +10,5 @@ public class SysStudentSubject {
     private int subject_info_id;
     private int role;
     private int class_id;
+    private int subject_id;
 }

@@ -45,7 +45,7 @@
         <if test="teacher !=null and teacher!=''" > and u.nick_name like #{pattern2}</if>
     </select>
     <select id="getClassSubjectList" parameterType="SysQueryDto" resultType="Map">
-        select t.*,i.name from sys_class_subject t left join sys_subject_info i on i.subject_info_id=t.subject_info_id
+        select t.*,i.name,i.subject_id from sys_class_subject t left join sys_subject_info i on i.subject_info_id=t.subject_info_id
         where t.status=1
         <if test="id !=null and id!=0">
             and t.class_id = #{id}
@@ -170,11 +170,12 @@
     </insert>
 
     <insert id="insertStudentSubject" parameterType="SysClassStudent" >
-        insert into sys_student_subject(class_id,user_id,subject_info_id,role,status
+        insert into sys_student_subject(class_id,user_id,subject_info_id,subject_id,role,status
         )values(
         <if test="class_id != null and class_id != 0">#{class_id},</if>
         <if test="user_id != null and user_id != 0">#{user_id},</if>
         <if test="subject_info_id != null and subject_info_id != 0">#{subject_info_id},</if>
+        <if test="subject_id != null and subject_id != 0">#{subject_id},</if>
         <if test="user_id != null ">#{role},</if>
 
         0
@@ -182,11 +183,11 @@
     </insert>
 
     <delete id="deleteClassById" parameterType="Long">
-        update sys_class set status = 0 where id = #{id}
+        delete from sys_class where id = #{id}
     </delete>
 
     <delete id="deleteClassStudent" parameterType="Long">
-        update sys_class_student set status = 0 where id = #{id};
+        delete from sys_class_student where id = #{id};
 
     </delete>
     <delete id="deleteStudentSubject" parameterType="SysStudentSubject">

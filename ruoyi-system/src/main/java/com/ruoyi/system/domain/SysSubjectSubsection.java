@@ -9,4 +9,5 @@ public class SysSubjectSubsection {
     private String name;
     private String file_url;
     private String video_url;
+    private int status;
 }

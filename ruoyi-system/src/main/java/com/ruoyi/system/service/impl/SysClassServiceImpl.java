@@ -77,6 +77,7 @@ public class SysClassServiceImpl implements ISysClassService {
                 sysStudentSubject.setClass_id(sysClassStudent.getClass_id());
                 sysStudentSubject.setSubject_info_id((Integer) map.get("subject_info_id"));
                 sysStudentSubject.setUser_id(sysClassStudent.getUser_id());
+                sysStudentSubject.setSubject_id((Integer) map.get("subject_id"));
                 this.insertStudentSubject(sysStudentSubject);
             }
             return 1;

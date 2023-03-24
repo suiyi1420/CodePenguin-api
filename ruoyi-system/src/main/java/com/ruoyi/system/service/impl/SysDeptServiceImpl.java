@@ -60,6 +60,17 @@ public class SysDeptServiceImpl implements ISysDeptService
         List<SysDept> depts = SpringUtils.getAopProxy(this).selectDeptList(dept);
         return buildDeptTreeSelect(depts);
     }
+    @DataScope(deptAlias = "d")
+    public List<SysDept> selectUserDeptList(SysDept dept)
+    {
+        return deptMapper.selectUserDeptList(dept);
+    }
+    @Override
+    public List<TreeSelect> selectUserDeptTreeList(SysDept dept)
+    {
+        List<SysDept> depts = SpringUtils.getAopProxy(this).selectUserDeptList(dept);
+        return buildDeptTreeSelect(depts);
+    }
 
     /**
      * 构建前端所需要树结构

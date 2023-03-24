@@ -210,6 +210,9 @@ public class FileUploadUtils
             {
                 return true;
             }
+            if(extension.contains(str)){
+                return true;
+            }
         }
         return false;
     }
@@ -226,6 +229,10 @@ public class FileUploadUtils
         if (StringUtils.isEmpty(extension))
         {
             extension = MimeTypeUtils.getExtension(Objects.requireNonNull(file.getContentType()));
+        }
+        if (StringUtils.isEmpty(extension))
+        {
+            extension = file.getContentType();
         }
         return extension;
     }

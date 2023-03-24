@@ -1,20 +1,20 @@
 package com.ruoyi.web.controller.system;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletResponse;
+
+import com.ruoyi.common.core.domain.model.LoginUser;
+import com.ruoyi.system.domain.SysQueryDto;
+import com.ruoyi.system.domain.SysSubjectInfo;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import com.ruoyi.common.annotation.Log;
 import com.ruoyi.common.constant.UserConstants;
@@ -125,6 +125,12 @@ public class SysUserController extends BaseController
     @PostMapping
     public AjaxResult add(@Validated @RequestBody SysUser user)
     {
+        user.setCreateBy(getUsername());
+        user.setCreater_id(getUserId());
+        user.setPassword(SecurityUtils.encryptPassword(user.getPassword()));
+        Map<String,Object> map=new HashMap<>();
+        map.put("role_id", Arrays.asList(user.getRoleIds()).contains(4L)?4L:Arrays.asList(user.getRoleIds()).contains(5L)?5L:0L);
+        map.put("user_id",user.getCreater_id());
         if (UserConstants.NOT_UNIQUE.equals(userService.checkUserNameUnique(user)))
         {
             return AjaxResult.error("新增用户'" + user.getUserName() + "'失败，登录账号已存在");
@@ -139,8 +145,10 @@ public class SysUserController extends BaseController
         {
             return AjaxResult.error("新增用户'" + user.getUserName() + "'失败，邮箱账号已存在");
         }
-        user.setCreateBy(getUsername());
-        user.setPassword(SecurityUtils.encryptPassword(user.getPassword()));
+        if(userService.checkUserCreateLimit(map)){
+            return AjaxResult.error("已达到创建账号数量上限！");
+        }
+
         return toAjax(userService.insertUser(user));
     }
 
@@ -252,5 +260,39 @@ public class SysUserController extends BaseController
     public AjaxResult deptTree(SysDept dept)
     {
         return AjaxResult.success(deptService.selectDeptTreeList(dept));
+    }
+    /**
+     * 获取当前用户部门树列表
+     */
+    @PreAuthorize("@ss.hasPermi('system:user:list')")
+    @GetMapping("/deptUserTree")
+    public AjaxResult deptUserTree(SysDept dept)
+    {
+        return AjaxResult.success(deptService.selectUserDeptTreeList(dept));
+    }
+
+    @PreAuthorize("@ss.hasPermi('system:user:list')")
+    @GetMapping("/userCreateCount")
+    public AjaxResult userCreateCount()
+    {
+        Long user_id=getUserId();
+        return AjaxResult.success(userService.getUserCreateCount(user_id));
+    }
+
+    @PreAuthorize("@ss.hasPermi('system:user:list')")
+    @PostMapping("/get_user_by_role_and_dept")
+    public AjaxResult getUserByRoleAndDept(@RequestBody Map<String,String>map){
+        LoginUser loginUser = SecurityUtils.getLoginUser();
+        if (StringUtils.isNotNull(loginUser)) {
+            SysUser currentUser = loginUser.getUser();
+            // 如果是超级管理员，则不过滤数据
+            if (StringUtils.isNotNull(currentUser)&& !currentUser.isAdmin()) {
+                map.put("dept_id",currentUser.getDeptId().toString());
+            }else{
+                map.put("dept_id","0");
+            }
+        }
+        List<SysUser> list=userService.getUserByRoleAndDept(map);
+        return AjaxResult.success(list);
     }
 }
