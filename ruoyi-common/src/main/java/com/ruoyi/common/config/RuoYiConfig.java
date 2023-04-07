@@ -29,6 +29,8 @@ public class RuoYiConfig
 
     private static String subjectFile;
 
+    private static String commonFile;
+
     /** 获取地址开关 */
     private static boolean addressEnabled;
 
@@ -85,6 +87,9 @@ public class RuoYiConfig
         return subjectFile;
     }
 
+    public static String getCommonFile(){
+        return commonFile;
+    }
     public void setSubjectFile(String subjectFile) {
         RuoYiConfig.subjectFile = subjectFile;
     }
@@ -92,6 +97,10 @@ public class RuoYiConfig
     public void setProfile(String profile)
     {
         RuoYiConfig.profile = profile;
+    }
+
+    public void setCommonFile(String commonFile) {
+        RuoYiConfig.commonFile = commonFile;
     }
 
     public static boolean isAddressEnabled()
@@ -145,4 +154,6 @@ public class RuoYiConfig
     }
 
     public static String getSubjectFilePath(){return getSubjectFile();}
+
+    public static String getCommonFilePath(){return getCommonFile();}
 }

@@ -150,7 +150,24 @@ public class SysProfileController extends BaseController
         {
             String path=RuoYiConfig.getSubjectFilePath()+"/"+type;
 
-            String avatar = FileUploadUtils.upload(path, file);
+            String avatar = FileUploadUtils.upload2(path, file);
+            AjaxResult ajax = AjaxResult.success();
+            ajax.put("url", avatar);
+            return ajax;
+
+        }
+        return AjaxResult.error("上传文件异常，请联系管理员");
+    }
+
+    @Log(title = "常见文件上传，目录为类型根目录", businessType = BusinessType.UPDATE)
+    @PostMapping("/common_upload")
+    public AjaxResult commonUpload(@RequestParam("file") MultipartFile file,@RequestParam("type") String type) throws Exception
+    {
+        if (!file.isEmpty())
+        {
+            String path=RuoYiConfig.getCommonFile()+"/"+type;
+
+            String avatar = FileUploadUtils.upload2(path, file);
             AjaxResult ajax = AjaxResult.success();
             ajax.put("url", avatar);
             return ajax;

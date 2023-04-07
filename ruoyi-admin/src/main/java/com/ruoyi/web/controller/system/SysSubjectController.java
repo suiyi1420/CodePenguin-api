@@ -11,6 +11,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,6 +54,13 @@ public class SysSubjectController extends BaseController {
     {
         List<SysSubjectInfo> list=iSysSubjectService.getSubjectInfo(sysQueryDto);
         return AjaxResult.success(list);
+    }
+    @PreAuthorize("@ss.hasPermi('system:subject_info:list')")
+    @PostMapping ("/info/{id}")
+    public AjaxResult getSubjectInfoById(@PathVariable(value="id") int id)
+    {
+        SysSubjectInfo sysSubjectInfo=iSysSubjectService.getSubjectInfoById(id);
+        return AjaxResult.success(sysSubjectInfo);
     }
     @PreAuthorize("@ss.hasPermi('system:subject:list')")
     @PostMapping("/list")
@@ -131,6 +140,21 @@ public class SysSubjectController extends BaseController {
         return AjaxResult.success(list);
     }
 
+    /**
+     * 根据用户id、小节id云端保存sb3
+     * @return
+     */
+    @PostMapping("/subsection/cloud/update")
+    public AjaxResult subsectionCloudUpdate(@RequestBody SysSubsectionFile sysSubsectionFile){
+        String time=new SimpleDateFormat("YYYY-MM-DD HH:mm:ss").format(new Date());
+        sysSubsectionFile.setUpdate_time(time);
+        return toAjax(iSysSubjectService.subsectionCloudAddOrUpdate(sysSubsectionFile));
+    }
 
+    @PostMapping("/subsection/cloud")
+    public AjaxResult getSubsectionCloudByUserIdAndSubsectionId(@RequestBody SysSubsectionFile sysSubsectionFile){
+        SysSubsectionFile sysSubsectionFile1=iSysSubjectService.getSubsectionCloudByUserIdAndSubsectionId(sysSubsectionFile);
+        return AjaxResult.success(sysSubsectionFile1);
+    }
 
 }

@@ -87,6 +87,26 @@ public class FileUploadUtils
     }
 
     /**
+     * 根据文件路径上传2
+     *
+     * @param baseDir 相对应用的基目录
+     * @param file 上传的文件
+     * @return 文件名称
+     * @throws IOException
+     */
+    public static final String upload2(String baseDir, MultipartFile file) throws IOException
+    {
+        try
+        {
+            return upload2(baseDir, file, MimeTypeUtils.DEFAULT_ALLOWED_EXTENSION);
+        }
+        catch (Exception e)
+        {
+            throw new IOException(e.getMessage(), e);
+        }
+    }
+
+    /**
      * 文件上传
      *
      * @param baseDir 相对应用的基目录
@@ -111,6 +131,38 @@ public class FileUploadUtils
         assertAllowed(file, allowedExtension);
 
         String fileName = extractFilename(file);
+
+        String absPath = getAbsoluteFile(baseDir, fileName).getAbsolutePath();
+        file.transferTo(Paths.get(absPath));
+        return getPathFileName(baseDir, fileName);
+    }
+
+    /**
+     * 文件上传2
+     * 文件路径根据文件类型+id标识设定
+     *
+     * @param baseDir 相对应用的基目录
+     * @param file 上传的文件
+     * @param allowedExtension 上传文件类型
+     * @return 返回上传成功的文件名
+     * @throws FileSizeLimitExceededException 如果超出最大大小
+     * @throws FileNameLengthLimitExceededException 文件名太长
+     * @throws IOException 比如读写文件出错时
+     * @throws InvalidExtensionException 文件校验异常
+     */
+    public static final String upload2(String baseDir, MultipartFile file, String[] allowedExtension)
+            throws FileSizeLimitExceededException, IOException, FileNameLengthLimitExceededException,
+            InvalidExtensionException
+    {
+        int fileNamelength = Objects.requireNonNull(file.getOriginalFilename()).length();
+        if (fileNamelength > FileUploadUtils.DEFAULT_FILE_NAME_LENGTH)
+        {
+            throw new FileNameLengthLimitExceededException(FileUploadUtils.DEFAULT_FILE_NAME_LENGTH);
+        }
+
+        assertAllowed(file, allowedExtension);
+
+        String fileName = file.getOriginalFilename();
 
         String absPath = getAbsoluteFile(baseDir, fileName).getAbsolutePath();
         file.transferTo(Paths.get(absPath));

@@ -12,6 +12,8 @@ ruoyi:
   profile: /var/www/html/uploadPath
   #课程文件路径
   subjectFile: /var/www/html/uploadPath/subject
+  #其他文件保存路径
+  commonFile: /var/www/html/uploadPath/other
   # 获取ip地址开关
   addressEnabled: false
   # 验证码类型 math 数组计算 char 字符验证

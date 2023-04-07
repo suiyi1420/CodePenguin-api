@@ -23,6 +23,10 @@ public class SysSubjectServiceImpl implements ISysSubjectService {
     }
 
     @Override
+    public SysSubjectInfo getSubjectInfoById(int id){
+        return  sysSubjectMapper.getSubjectInfoById(id);
+    }
+    @Override
     public List<SysSubject> getSubject(String subjectTypeId) {
         return sysSubjectMapper.getSubject(subjectTypeId);
     }
@@ -78,7 +82,14 @@ public class SysSubjectServiceImpl implements ISysSubjectService {
         return sysSubjectMapper.getSubjectTypeByUserList(userId);
     }
 
-    ;
+    @Override
+    public int subsectionCloudAddOrUpdate(SysSubsectionFile sysSubsectionFile){
+        return sysSubjectMapper.subsectionCloudAddOrUpdate(sysSubsectionFile);
+    }
+@Override
+    public SysSubsectionFile getSubsectionCloudByUserIdAndSubsectionId(SysSubsectionFile sysSubsectionFile){
+    return sysSubjectMapper.getSubsectionCloudByUserIdAndSubsectionId(sysSubsectionFile);
+    }
 
     @Override
     public List<SysSubject> getSubjectListByUser(Integer userId,Integer subjectTypeId) {

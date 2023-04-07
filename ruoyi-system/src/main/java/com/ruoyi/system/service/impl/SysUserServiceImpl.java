@@ -526,10 +526,10 @@ public class SysUserServiceImpl implements ISysUserService {
         if (sysUserCreateList.size() > 0) {
             SysUserCreate sysUserCreate = sysUserCreateList.get(0);
             Map<String,Object> map=new HashMap<>();
-            map.put("role_id", 2);
+            map.put("role_id", 4);
             map.put("user_id",user_id);
             int teacherCount = userMapper.selectUserCreateCount(map);
-            map.put("role_id", 3);
+            map.put("role_id", 5);
             int studentCount = userMapper.selectUserCreateCount(map);
 
             result.put("teacher",teacherCount);

@@ -25,6 +25,12 @@
         <if test="keyWord !=null and keyWord!=''">and name like #{pattern}</if>
         order by t.subject_info_id asc
     </select>
+    <select id="getSubjectInfoById" parameterType="int" resultType="SysSubjectInfo">
+        select t.*
+        from sys_subject_info t
+        where t.subject_info_id = #{id}
+          and t.status = 1
+    </select>
     <select id="getSubsectionList" parameterType="SysQueryDto" resultType="SysSubjectSubsection">
         select t.* from sys_subject_subsection t where t.subject_info_id=#{id} and t.status=1
         <bind name="pattern" value="'%' + keyWord + '%'"/>
@@ -56,7 +62,8 @@
     <select id="getSubjectListByUser" parameterType="Map" resultType="SysSubject">
         select t.*
         from sys_subject t
-        where t.subject_id in (select DISTINCT(subject_id) from sys_student_subject where user_id = #{user_id}) and subject_type_id=#{subject_type_id};
+        where t.subject_id in (select DISTINCT(subject_id) from sys_student_subject where user_id = #{user_id})
+          and subject_type_id = #{subject_type_id};
     </select>
 
     <select id="getSubjectInfoListByUser" parameterType="Map" resultType="SysSubjectInfo">
@@ -65,8 +72,15 @@
                  inner join sys_student_subject s on t.subject_info_id = s.subject_info_id
         where s.user_id = #{userId}
           and s.subject_id = #{subjectId}
-          and s.`status` = 0
+          and s.`status` = 1
 
+    </select>
+    <select id="getSubsectionCloudByUserIdAndSubsectionId" parameterType="SysSubsectionFile"
+            resultType="SysSubsectionFile">
+        select *
+        from sys_student_subsection
+        where user_id = #{user_id}
+          and subsection_id = #{subsection_id}
     </select>
     <update id="updateSubject" parameterType="SysSubject">
         update sys_subject
@@ -87,8 +101,8 @@
             <if test="planned_time != null and planned_time != ''">planned_time = #{planned_time},</if>
             <if test="status != null ">status=#{status} ,</if>
             <if test="url != null and url != ''">url=#{url} ,</if>
-            <if test="type != null and type != ''">type=#{type} </if>
-
+            <if test="type != null ">type=#{type} ,</if>
+            <if test="pdf_url != null and pdf_url != ''">pdf_url=#{pdf_url}</if>
         </set>
         where subject_info_id = #{subject_info_id}
     </update>
@@ -120,9 +134,25 @@
 
     <insert id="insertSubjectInfo" parameterType="SysSubjectInfo">
         insert into sys_subject_info(subject_id, name, context, knowledge, update_text, knowledge_num, planned_time,
-                                     status,url,type)
-        values (#{subject_id}, #{name}, #{context}, #{knowledge}, #{update_text}, #{knowledge_num}, #{planned_time}, 1,#{url},#{type})
+                                     status, url, type, pdf_url)
+        values (#{subject_id}, #{name}, #{context}, #{knowledge}, #{update_text}, #{knowledge_num}, #{planned_time}, 1,
+                #{url}, #{type}, #{pdf_url})
     </insert>
+
+    <update id="subsectionCloudAddOrUpdate" parameterType="SysSubsectionFile">
+        <selectKey keyProperty="count" resultType="int" order="BEFORE">
+            select count(*) from sys_student_subsection where user_id=#{user_id} and subsection_id=#{subsection_id}
+        </selectKey>
+        <if test="count>0">
+            update sys_student_subsection <set>file_url=#{file_url},update_time=#{update_time}</set> where user_id=#{user_id} and subsection_id=#{subsection_id}
+        </if>
+        <if test="count==0">
+            insert into sys_student_subsection (user_id,subsection_id,file_url,update_time) values
+            (#{user_id},#{subsection_id},#{file_url},#{update_time})
+
+        </if>
+
+    </update>
 
     <delete id="deleteSubjectSubsection" parameterType="int">
         delete

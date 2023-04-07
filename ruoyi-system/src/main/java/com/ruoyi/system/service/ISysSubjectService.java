@@ -8,6 +8,7 @@ import java.util.Map;
 public interface ISysSubjectService {
 
     public List<SysSubjectInfo> getSubjectInfo(SysQueryDto sysQueryDto);
+    public SysSubjectInfo getSubjectInfoById(int id);
     public List<SysSubject> getSubject(String subjectTypeId);
     public List<SysSubjectSubsection> getSubsectionList(SysQueryDto sysQueryDto);
 
@@ -20,6 +21,8 @@ public interface ISysSubjectService {
     public int insertSubject(SysSubject sysSubject);
     public int updateSubject(SysSubject sysSubject);
     public int deleteSubject(int id);
+    public int subsectionCloudAddOrUpdate(SysSubsectionFile sysSubsectionFile);
+    public SysSubsectionFile getSubsectionCloudByUserIdAndSubsectionId(SysSubsectionFile sysSubsectionFile);
     public List<SysSubjectType> getSubjectTypeByUserList(Integer userId);
     public List<SysSubject> getSubjectListByUser(Integer userId,Integer subjectTypeId);
     public List<SysSubjectInfo> getSubjectInfoListByUser(Map<String,Object> map);

@@ -62,6 +62,16 @@ public class SysClassServiceImpl implements ISysClassService {
 
     @Override
     public int insertClassSubject(SysClassSubject sysClassSubject) {
+        List<Map<String, Object>> studentList=sysClassMapper.getClassStudentList(sysClassSubject.getClass_id());
+        for(Map<String, Object> map:studentList){
+            SysStudentSubject sysStudentSubject=new SysStudentSubject();
+            sysStudentSubject.setClass_id(sysClassSubject.getClass_id());
+            sysStudentSubject.setSubject_info_id(sysClassSubject.getSubject_info_id());
+            sysStudentSubject.setUser_id(Integer.valueOf(map.get("user_id").toString()));
+            sysStudentSubject.setSubject_id(sysClassSubject.getSubject_id());
+            sysStudentSubject.setStatus("1");
+            sysClassMapper.insertStudentSubject(sysStudentSubject);
+        }
         return sysClassMapper.insertClassSubject(sysClassSubject);
     }
 
@@ -107,5 +117,19 @@ public class SysClassServiceImpl implements ISysClassService {
     @Override
     public int deleteStudentSubject(SysStudentSubject sysStudentSubject) {
         return sysClassMapper.deleteStudentSubject(sysStudentSubject);
+    }
+
+    @Override
+    public int deleteClassSubject(int class_id,int id) {
+        SysClassSubject sysClassSubject=sysClassMapper.getClassSubjectById(id);
+        List<Map<String, Object>> studentList=sysClassMapper.getClassStudentList(class_id);
+        for(Map<String, Object> map:studentList){
+            SysStudentSubject sysStudentSubject=new SysStudentSubject();
+            sysStudentSubject.setUser_id(Integer.valueOf(map.get("user_id").toString()));
+            sysStudentSubject.setSubject_info_id(sysClassSubject.getSubject_info_id());
+            sysStudentSubject.setClass_id(sysClassSubject.getClass_id());
+            sysClassMapper.deleteStudentSubjectFromSubjectInfo(sysStudentSubject);
+        }
+        return sysClassMapper.deleteClassSubjectById(id);
     }
 }

@@ -18,6 +18,7 @@ public interface ISysClassService {
     public int updateClassSubject(SysClassSubject sysClassSubject);
     public int insertClass(SysClass sysClass);
     public int insertClassSubject(SysClassSubject sysClassSubject);
+    public int deleteClassSubject(int class_id,int id);
     public int insertClassStudent(SysClassStudent sysClassStudent);
     public int insertStudentSubject(SysStudentSubject sysStudentSubject);
 

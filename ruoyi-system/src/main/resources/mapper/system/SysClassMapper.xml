@@ -93,6 +93,10 @@
 
     </select>
 
+    <select id="getClassSubjectById" parameterType="int" resultType="SysClassSubject">
+        select * from sys_class_subject where id=#{id}
+    </select>
+
     <update id="updateClass" parameterType="SysClass">
         update sys_class
         <set>
@@ -178,7 +182,7 @@
         <if test="subject_id != null and subject_id != 0">#{subject_id},</if>
         <if test="user_id != null ">#{role},</if>
 
-        0
+        1
         )
     </insert>
 
@@ -192,6 +196,12 @@
     </delete>
     <delete id="deleteStudentSubject" parameterType="SysStudentSubject">
         delete from sys_student_subject where user_id=#{user_id} and class_id=#{class_id}
+    </delete>
+    <delete id="deleteStudentSubjectFromSubjectInfo" parameterType="SysStudentSubject">
+        delete from sys_student_subject where user_id=#{user_id} and class_id=#{class_id} and subject_info_id=#{subject_info_id}
+    </delete>
+    <delete id="deleteClassSubjectById" parameterType="int">
+        delete from sys_class_subject where id=#{id}
     </delete>
 
 </mapper>

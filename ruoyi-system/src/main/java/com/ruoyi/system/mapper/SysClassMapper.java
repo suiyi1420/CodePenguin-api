@@ -16,7 +16,7 @@ public interface SysClassMapper {
 
     public List<Map<String,Object>> getAllStudentList(SysQueryDto sysQueryDto);
     public List<Map<String,Object>> getSubjectSubsection(int id);
-
+public SysClassSubject getClassSubjectById(int id);
     public int updateClass(SysClass sysClass);
     public int updateClassSubject(SysClassSubject sysClassSubject);
 
@@ -28,6 +28,8 @@ public interface SysClassMapper {
     public int deleteClassById(Long id);
     public int deleteClassStudent(Long id);
     public int deleteStudentSubject(SysStudentSubject sysStudentSubject);
+    public int deleteStudentSubjectFromSubjectInfo(SysStudentSubject sysStudentSubject);
+    public int deleteClassSubjectById(int id);
 
 
 }

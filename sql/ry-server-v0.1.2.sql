@@ -11,7 +11,7 @@
  Target Server Version : 50733
  File Encoding         : 65001
 
- Date: 27/03/2023 10:59:38
+ Date: 07/04/2023 21:15:27
 */
 
 SET NAMES utf8mb4;
@@ -315,12 +315,13 @@ CREATE TABLE `sys_class`  (
   `creater_id` bigint(20) NULL DEFAULT NULL,
   `class_time` datetime NULL DEFAULT NULL COMMENT '上课时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_class
 -- ----------------------------
 INSERT INTO `sys_class` VALUES (7, '周六Scratch 6班', 13, NULL, 126, '2023-03-21 12:09:17', '1', 122, '2023-03-03 12:06:55');
+INSERT INTO `sys_class` VALUES (9, '周六Scratch 7班', 19, NULL, 126, '2023-04-01 09:43:39', '1', 126, '2023-04-01 09:43:35');
 
 -- ----------------------------
 -- Table structure for sys_class_student
@@ -332,12 +333,13 @@ CREATE TABLE `sys_class_student`  (
   `user_id` bigint(20) NULL DEFAULT NULL,
   `status` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 29 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_class_student
 -- ----------------------------
-INSERT INTO `sys_class_student` VALUES (26, 7, 127, '1');
+INSERT INTO `sys_class_student` VALUES (27, 7, 127, '1');
+INSERT INTO `sys_class_student` VALUES (28, 9, 127, '1');
 
 -- ----------------------------
 -- Table structure for sys_class_subject
@@ -351,13 +353,15 @@ CREATE TABLE `sys_class_subject`  (
   `rel_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '课时名称',
   `status` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '状态：0隐藏，1显示',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_class_subject
 -- ----------------------------
 INSERT INTO `sys_class_subject` VALUES (20, 7, '2023-03-24 22:58:11', 17, '第一节', '1');
 INSERT INTO `sys_class_subject` VALUES (21, 7, '2023-03-24 22:58:21', 18, '第二节', '1');
+INSERT INTO `sys_class_subject` VALUES (22, 9, '2023-04-01 09:44:18', 65, '一', '1');
+INSERT INTO `sys_class_subject` VALUES (23, 9, '2023-04-01 09:44:29', 66, '二', '1');
 
 -- ----------------------------
 -- Table structure for sys_config
@@ -573,7 +577,7 @@ CREATE TABLE `sys_logininfor`  (
   `msg` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '提示消息',
   `login_time` datetime NULL DEFAULT NULL COMMENT '访问时间',
   PRIMARY KEY (`info_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 458 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '系统访问记录' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 502 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '系统访问记录' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_logininfor
@@ -936,6 +940,50 @@ INSERT INTO `sys_logininfor` VALUES (454, 'hyxs', '115.173.52.95', 'XX XX', 'Chr
 INSERT INTO `sys_logininfor` VALUES (455, 'hyxs', '115.173.52.95', 'XX XX', 'Chrome 10', 'Windows 10', '0', '退出成功', '2023-03-24 23:01:46');
 INSERT INTO `sys_logininfor` VALUES (456, 'admin', '124.240.95.90', 'XX XX', 'Chrome 10', 'Windows 10', '0', '登录成功', '2023-03-24 23:07:06');
 INSERT INTO `sys_logininfor` VALUES (457, 'admin', '124.240.95.90', 'XX XX', 'Chrome 10', 'Windows 10', '0', '登录成功', '2023-03-25 22:58:53');
+INSERT INTO `sys_logininfor` VALUES (458, 'admin', '124.240.95.90', 'XX XX', 'Chrome 10', 'Windows 10', '1', '验证码已失效', '2023-03-27 11:06:41');
+INSERT INTO `sys_logininfor` VALUES (459, 'admin', '124.240.95.90', 'XX XX', 'Chrome 10', 'Windows 10', '1', '用户不存在/密码错误', '2023-03-27 11:06:44');
+INSERT INTO `sys_logininfor` VALUES (460, 'admin', '124.240.95.90', 'XX XX', 'Chrome 10', 'Windows 10', '1', '密码输入错误1次', '2023-03-27 11:06:44');
+INSERT INTO `sys_logininfor` VALUES (461, 'admin', '124.240.95.90', 'XX XX', 'Chrome 10', 'Windows 10', '0', '登录成功', '2023-03-27 11:06:51');
+INSERT INTO `sys_logininfor` VALUES (462, 'admin', '120.236.76.103', 'XX XX', 'Chrome 10', 'Windows 10', '0', '登录成功', '2023-03-28 10:29:02');
+INSERT INTO `sys_logininfor` VALUES (463, 'admin', '120.236.76.103', 'XX XX', 'Chrome 10', 'Windows 10', '0', '登录成功', '2023-03-28 11:29:29');
+INSERT INTO `sys_logininfor` VALUES (464, 'admin', '120.236.76.103', 'XX XX', 'Chrome 10', 'Windows 10', '0', '登录成功', '2023-03-28 15:58:18');
+INSERT INTO `sys_logininfor` VALUES (465, 'admin', '120.236.76.103', 'XX XX', 'Chrome 10', 'Windows 10', '0', '登录成功', '2023-03-28 17:02:41');
+INSERT INTO `sys_logininfor` VALUES (466, 'admin', '120.236.76.103', 'XX XX', 'Chrome 10', 'Windows 10', '0', '登录成功', '2023-03-28 18:18:48');
+INSERT INTO `sys_logininfor` VALUES (467, 'admin', '113.78.25.135', 'XX XX', 'Chrome 10', 'Windows 10', '1', '验证码已失效', '2023-04-01 09:26:32');
+INSERT INTO `sys_logininfor` VALUES (468, 'admin', '113.78.25.135', 'XX XX', 'Chrome 10', 'Windows 10', '0', '登录成功', '2023-04-01 09:26:36');
+INSERT INTO `sys_logininfor` VALUES (469, 'admin', '113.78.25.135', 'XX XX', 'Chrome 10', 'Windows 10', '0', '退出成功', '2023-04-01 09:30:29');
+INSERT INTO `sys_logininfor` VALUES (470, 'admin', '113.78.25.135', 'XX XX', 'Chrome 10', 'Windows 10', '0', '登录成功', '2023-04-01 09:30:42');
+INSERT INTO `sys_logininfor` VALUES (471, 'admin', '113.78.25.135', 'XX XX', 'Chrome 10', 'Windows 10', '0', '退出成功', '2023-04-01 09:31:20');
+INSERT INTO `sys_logininfor` VALUES (472, 'hyxs', '113.78.25.135', 'XX XX', 'Chrome 10', 'Windows 10', '0', '登录成功', '2023-04-01 09:31:31');
+INSERT INTO `sys_logininfor` VALUES (473, 'hyxs', '113.78.25.135', 'XX XX', 'Chrome 10', 'Windows 10', '0', '退出成功', '2023-04-01 09:32:58');
+INSERT INTO `sys_logininfor` VALUES (474, 'admin', '113.78.25.135', 'XX XX', 'Chrome 10', 'Windows 10', '0', '登录成功', '2023-04-01 09:33:06');
+INSERT INTO `sys_logininfor` VALUES (475, 'admin', '113.78.25.135', 'XX XX', 'Chrome 10', 'Windows 10', '0', '退出成功', '2023-04-01 09:42:03');
+INSERT INTO `sys_logininfor` VALUES (476, 'hyxs', '113.78.25.135', 'XX XX', 'Chrome 10', 'Windows 10', '0', '登录成功', '2023-04-01 09:42:11');
+INSERT INTO `sys_logininfor` VALUES (477, 'hyxs', '113.78.25.135', 'XX XX', 'Chrome 10', 'Windows 10', '0', '退出成功', '2023-04-01 09:42:45');
+INSERT INTO `sys_logininfor` VALUES (478, 'admin', '113.78.25.135', 'XX XX', 'Chrome 10', 'Windows 10', '1', '验证码错误', '2023-04-01 09:42:52');
+INSERT INTO `sys_logininfor` VALUES (479, 'admin', '113.78.25.135', 'XX XX', 'Chrome 10', 'Windows 10', '0', '登录成功', '2023-04-01 09:42:56');
+INSERT INTO `sys_logininfor` VALUES (480, 'admin', '113.78.25.135', 'XX XX', 'Chrome 10', 'Windows 10', '0', '退出成功', '2023-04-01 09:46:29');
+INSERT INTO `sys_logininfor` VALUES (481, 'hyxs', '113.78.25.135', 'XX XX', 'Chrome 10', 'Windows 10', '0', '登录成功', '2023-04-01 09:46:42');
+INSERT INTO `sys_logininfor` VALUES (482, 'hyxs', '113.78.25.135', 'XX XX', 'Chrome 10', 'Windows 10', '0', '退出成功', '2023-04-01 09:46:53');
+INSERT INTO `sys_logininfor` VALUES (483, 'admin', '113.78.25.135', 'XX XX', 'Chrome 10', 'Windows 10', '0', '登录成功', '2023-04-01 09:47:01');
+INSERT INTO `sys_logininfor` VALUES (484, 'admin', '120.236.76.103', 'XX XX', 'Chrome 10', 'Windows 10', '0', '登录成功', '2023-04-03 19:25:49');
+INSERT INTO `sys_logininfor` VALUES (485, 'admin', '120.236.76.103', 'XX XX', 'Chrome 10', 'Windows 10', '0', '登录成功', '2023-04-04 11:29:06');
+INSERT INTO `sys_logininfor` VALUES (486, 'admin', '23.105.204.153', 'XX XX', 'Chrome 10', 'Windows 10', '1', '密码输入错误1次', '2023-04-04 13:18:48');
+INSERT INTO `sys_logininfor` VALUES (487, 'admin', '23.105.204.153', 'XX XX', 'Chrome 10', 'Windows 10', '1', '用户不存在/密码错误', '2023-04-04 13:18:48');
+INSERT INTO `sys_logininfor` VALUES (488, 'admin', '23.105.204.153', 'XX XX', 'Chrome 10', 'Windows 10', '0', '登录成功', '2023-04-04 13:18:55');
+INSERT INTO `sys_logininfor` VALUES (489, 'admin', '120.236.76.103', 'XX XX', 'Chrome 10', 'Windows 10', '0', '登录成功', '2023-04-04 18:45:03');
+INSERT INTO `sys_logininfor` VALUES (490, 'admin', '120.236.76.103', 'XX XX', 'Chrome 10', 'Windows 10', '0', '登录成功', '2023-04-04 19:45:04');
+INSERT INTO `sys_logininfor` VALUES (491, 'admin', '124.240.71.74', 'XX XX', 'Chrome 10', 'Windows 10', '0', '登录成功', '2023-04-05 16:11:33');
+INSERT INTO `sys_logininfor` VALUES (492, 'admin', '124.240.71.74', 'XX XX', 'Chrome 10', 'Windows 10', '1', '密码输入错误1次', '2023-04-05 17:44:35');
+INSERT INTO `sys_logininfor` VALUES (493, 'admin', '124.240.71.74', 'XX XX', 'Chrome 10', 'Windows 10', '1', '用户不存在/密码错误', '2023-04-05 17:44:35');
+INSERT INTO `sys_logininfor` VALUES (494, 'admin', '124.240.71.74', 'XX XX', 'Chrome 10', 'Windows 10', '0', '登录成功', '2023-04-05 17:44:39');
+INSERT INTO `sys_logininfor` VALUES (495, 'admin', '120.236.76.103', 'XX XX', 'Chrome 10', 'Windows 10', '0', '登录成功', '2023-04-06 11:13:44');
+INSERT INTO `sys_logininfor` VALUES (496, 'admin', '124.240.88.133', 'XX XX', 'Chrome 10', 'Windows 10', '0', '登录成功', '2023-04-06 23:28:00');
+INSERT INTO `sys_logininfor` VALUES (497, 'admin', '120.236.76.103', 'XX XX', 'Chrome 10', 'Windows 10', '0', '登录成功', '2023-04-07 09:04:43');
+INSERT INTO `sys_logininfor` VALUES (498, 'admin', '124.240.88.133', 'XX XX', 'Chrome 10', 'Windows 10', '0', '登录成功', '2023-04-07 09:40:17');
+INSERT INTO `sys_logininfor` VALUES (499, 'admin', '120.236.76.103', 'XX XX', 'Chrome 10', 'Windows 10', '0', '登录成功', '2023-04-07 09:42:43');
+INSERT INTO `sys_logininfor` VALUES (500, 'admin', '124.240.88.133', 'XX XX', 'Chrome 10', 'Windows 10', '0', '登录成功', '2023-04-07 10:11:53');
+INSERT INTO `sys_logininfor` VALUES (501, 'admin', '120.236.76.103', 'XX XX', 'Chrome 10', 'Windows 10', '0', '登录成功', '2023-04-07 18:15:04');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -962,7 +1010,7 @@ CREATE TABLE `sys_menu`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`menu_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1082 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '菜单权限表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1085 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '菜单权限表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_menu
@@ -1085,6 +1133,9 @@ INSERT INTO `sys_menu` VALUES (1078, '角色列表', 101, 0, '', NULL, NULL, 1, 
 INSERT INTO `sys_menu` VALUES (1079, '岗位列表', 104, 0, '', NULL, NULL, 1, 0, 'F', '0', '0', 'system:post:list', '#', 'admin', '2023-03-19 13:22:38', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (1080, '部门列表', 103, 0, '', NULL, NULL, 1, 0, 'F', '0', '0', 'system:dept:list', '#', 'admin', '2023-03-19 13:23:02', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (1081, '用户列表', 100, 0, '', NULL, NULL, 1, 0, 'F', '0', '0', 'system:user:list', '#', 'admin', '2023-03-19 13:23:21', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1082, '班级-编辑', 119, 1, '', NULL, NULL, 1, 0, 'F', '0', '0', 'system:class:edit', '#', 'admin', '2023-04-06 11:14:33', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1083, '班级-删除', 119, 2, '', NULL, NULL, 1, 0, 'F', '0', '0', 'system:class:delete', '#', 'admin', '2023-04-06 11:14:58', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1084, '班级-添加', 119, 3, '', NULL, NULL, 1, 0, 'F', '0', '0', 'system:class:add', '#', 'admin', '2023-04-06 11:15:16', '', NULL, '');
 
 -- ----------------------------
 -- Table structure for sys_notice
@@ -1132,7 +1183,7 @@ CREATE TABLE `sys_oper_log`  (
   `error_msg` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '错误消息',
   `oper_time` datetime NULL DEFAULT NULL COMMENT '操作时间',
   PRIMARY KEY (`oper_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 274 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '操作日志记录' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 316 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '操作日志记录' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_oper_log
@@ -1311,6 +1362,48 @@ INSERT INTO `sys_oper_log` VALUES (270, '用户管理', 1, 'com.ruoyi.web.contro
 INSERT INTO `sys_oper_log` VALUES (271, '用户管理', 1, 'com.ruoyi.web.controller.system.SysUserController.add()', 'POST', 1, 'admin', NULL, '/system/user', '115.173.52.95', 'XX XX', '{\"admin\":false,\"createBy\":\"admin\",\"creater_id\":1,\"deptId\":104,\"nickName\":\"虎英学生\",\"params\":{},\"postIds\":[5],\"roleIds\":[5],\"student\":0,\"teacher\":0,\"userId\":127,\"userName\":\"hyxs\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2023-03-24 22:59:00');
 INSERT INTO `sys_oper_log` VALUES (272, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.95.90', 'XX XX', '\"sb3\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/sb3/2023/03/25/SL1-1 我的“名片”_20230325230245A006.sb3\"}', 0, NULL, '2023-03-25 23:02:45');
 INSERT INTO `sys_oper_log` VALUES (273, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.95.90', 'XX XX', '\"pdf\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/pdf/2023/03/25/1-我的名片_20230325230459A007.pdf\"}', 0, NULL, '2023-03-25 23:04:59');
+INSERT INTO `sys_oper_log` VALUES (274, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.71.74', 'XX XX', '\"pdf\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/pdf/2023/04/05/1-我的名片_20230405174738A001.pdf\"}', 0, NULL, '2023-04-05 17:47:38');
+INSERT INTO `sys_oper_log` VALUES (275, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.71.74', 'XX XX', '\"sb3\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/sb3/2023/04/05/SL1-1 我的“名片”_20230405175033A002.sb3\"}', 0, NULL, '2023-04-05 17:50:33');
+INSERT INTO `sys_oper_log` VALUES (276, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.71.74', 'XX XX', '\"sb3\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/sb3/2023/04/05/空白界面_20230405175040A003.sb3\"}', 0, NULL, '2023-04-05 17:50:40');
+INSERT INTO `sys_oper_log` VALUES (277, '菜单管理', 1, 'com.ruoyi.web.controller.system.SysMenuController.add()', 'POST', 1, 'admin', NULL, '/system/menu', '120.236.76.103', 'XX XX', '{\"children\":[],\"createBy\":\"admin\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuName\":\"班级-编辑\",\"menuType\":\"F\",\"orderNum\":1,\"params\":{},\"parentId\":119,\"perms\":\"system:class:edit\",\"status\":\"0\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2023-04-06 11:14:33');
+INSERT INTO `sys_oper_log` VALUES (278, '菜单管理', 1, 'com.ruoyi.web.controller.system.SysMenuController.add()', 'POST', 1, 'admin', NULL, '/system/menu', '120.236.76.103', 'XX XX', '{\"children\":[],\"createBy\":\"admin\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuName\":\"班级-删除\",\"menuType\":\"F\",\"orderNum\":2,\"params\":{},\"parentId\":119,\"perms\":\"system:class:delete\",\"status\":\"0\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2023-04-06 11:14:58');
+INSERT INTO `sys_oper_log` VALUES (279, '菜单管理', 1, 'com.ruoyi.web.controller.system.SysMenuController.add()', 'POST', 1, 'admin', NULL, '/system/menu', '120.236.76.103', 'XX XX', '{\"children\":[],\"createBy\":\"admin\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuName\":\"班级-添加\",\"menuType\":\"F\",\"orderNum\":3,\"params\":{},\"parentId\":119,\"perms\":\"system:class:add\",\"status\":\"0\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2023-04-06 11:15:17');
+INSERT INTO `sys_oper_log` VALUES (280, '角色管理', 2, 'com.ruoyi.web.controller.system.SysRoleController.edit()', 'PUT', 1, 'admin', NULL, '/system/role', '120.236.76.103', 'XX XX', '{\"admin\":false,\"deptCheckStrictly\":false,\"flag\":false,\"menuCheckStrictly\":false,\"menuIds\":[1,100,119,120,124,1081,1000,1001,1002,1003,1006,1078,1080,1079,1065,122,123,1064,121,1074,1066,1062,1063,1061,1070,1082,1083,1084],\"params\":{},\"remark\":\"校长\",\"roleId\":3,\"roleKey\":\"schoolmaster\",\"roleName\":\"校长\",\"roleSort\":\"3\",\"status\":\"0\",\"updateBy\":\"admin\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2023-04-06 11:15:56');
+INSERT INTO `sys_oper_log` VALUES (281, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '120.236.76.103', 'XX XX', '\"pdf\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/pdf/2023/04/06/招商银行交易流水(申请时间2023年02月23日09时43分25秒)_20230324185451A001_20230406112412A001.pdf\"}', 0, NULL, '2023-04-06 11:24:13');
+INSERT INTO `sys_oper_log` VALUES (282, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"pdf\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/pdf/2023/04/06/1-我的名片_20230406232826A001.pdf\"}', 0, NULL, '2023-04-06 23:28:26');
+INSERT INTO `sys_oper_log` VALUES (283, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"sb3\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/sb3/2023/04/06/空白界面_20230406233003A002.sb3\"}', 0, NULL, '2023-04-06 23:30:03');
+INSERT INTO `sys_oper_log` VALUES (284, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"sb3\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/sb3/2023/04/06/SL1-1 我的“名片”_20230406233024A003.sb3\"}', 0, NULL, '2023-04-06 23:30:24');
+INSERT INTO `sys_oper_log` VALUES (285, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"pdf\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/pdf/2023/04/07/2-魔法魁地奇_20230407094241A004.pdf\"}', 0, NULL, '2023-04-07 09:42:41');
+INSERT INTO `sys_oper_log` VALUES (286, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"sb3\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/sb3/2023/04/07/1. 帮玩仔抓住前方的球-教学_20230407094311A005.sb3\"}', 0, NULL, '2023-04-07 09:43:11');
+INSERT INTO `sys_oper_log` VALUES (287, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"sb3\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/sb3/2023/04/07/2. 帮玩仔抓住后方的球-教学_20230407094414A006.sb3\"}', 0, NULL, '2023-04-07 09:44:14');
+INSERT INTO `sys_oper_log` VALUES (288, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"sb3\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/sb3/2023/04/07/3. 教会玩仔上下左右飞行-教学_20230407094447A007.sb3\"}', 0, NULL, '2023-04-07 09:44:47');
+INSERT INTO `sys_oper_log` VALUES (289, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"pdf\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/pdf/2023/04/07/1-我的名片_20230407101209A008.pdf\"}', 0, NULL, '2023-04-07 10:12:09');
+INSERT INTO `sys_oper_log` VALUES (290, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"pdf\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/pdf/2023/04/07/1-我的名片_20230407101230A009.pdf\"}', 0, NULL, '2023-04-07 10:12:30');
+INSERT INTO `sys_oper_log` VALUES (291, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"pdf\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/pdf/2023/04/07/2-魔法魁地奇_20230407102345A010.pdf\"}', 0, NULL, '2023-04-07 10:23:45');
+INSERT INTO `sys_oper_log` VALUES (292, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"pdf\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/pdf/2023/04/07/3-自动寻宝_20230407102400A011.pdf\"}', 0, NULL, '2023-04-07 10:24:00');
+INSERT INTO `sys_oper_log` VALUES (293, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"sb3\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/sb3/2023/04/07/自动寻宝1（教学）_20230407102438A012.sb3\"}', 0, NULL, '2023-04-07 10:24:38');
+INSERT INTO `sys_oper_log` VALUES (294, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"sb3\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/sb3/2023/04/07/自动寻宝2（教学）_20230407102451A013.sb3\"}', 0, NULL, '2023-04-07 10:24:51');
+INSERT INTO `sys_oper_log` VALUES (295, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"pdf\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/pdf/2023/04/07/4-地球保卫战_20230407102523A014.pdf\"}', 0, NULL, '2023-04-07 10:25:23');
+INSERT INTO `sys_oper_log` VALUES (296, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"sb3\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/sb3/2023/04/07/SL1-4 地球保卫战（教学）_20230407102632A015.sb3\"}', 0, NULL, '2023-04-07 10:26:32');
+INSERT INTO `sys_oper_log` VALUES (297, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"pdf\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/pdf/2023/04/07/5-植物灌溉_20230407102654A016.pdf\"}', 0, NULL, '2023-04-07 10:26:54');
+INSERT INTO `sys_oper_log` VALUES (298, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"sb3\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/sb3/2023/04/07/SL1-5 植物灌溉（教学）_20230407102704A017.sb3\"}', 0, NULL, '2023-04-07 10:27:04');
+INSERT INTO `sys_oper_log` VALUES (299, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"pdf\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/pdf/2023/04/07/6-幸运大转盘_20230407102720A018.pdf\"}', 0, NULL, '2023-04-07 10:27:20');
+INSERT INTO `sys_oper_log` VALUES (300, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"sb3\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/sb3/2023/04/07/1. 掷色子-教学_20230407102732A019.sb3\"}', 0, NULL, '2023-04-07 10:27:32');
+INSERT INTO `sys_oper_log` VALUES (301, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"sb3\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/sb3/2023/04/07/2. 掷硬币-教学_20230407102744A020.sb3\"}', 0, NULL, '2023-04-07 10:27:44');
+INSERT INTO `sys_oper_log` VALUES (302, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"sb3\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/sb3/2023/04/07/3. 捉迷藏-教学_20230407102759A021.sb3\"}', 0, NULL, '2023-04-07 10:27:59');
+INSERT INTO `sys_oper_log` VALUES (303, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"sb3\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/sb3/2023/04/07/4. 幸运转盘-教学_20230407102816A022.sb3\"}', 0, NULL, '2023-04-07 10:28:16');
+INSERT INTO `sys_oper_log` VALUES (304, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"pdf\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/pdf/2023/04/07/7-七色彩虹圈_20230407103033A023.pdf\"}', 0, NULL, '2023-04-07 10:30:33');
+INSERT INTO `sys_oper_log` VALUES (305, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"sb3\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/sb3/2023/04/07/SL1-7 七色彩虹圈（教学）_20230407103042A024.sb3\"}', 0, NULL, '2023-04-07 10:30:42');
+INSERT INTO `sys_oper_log` VALUES (306, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"pdf\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/pdf/2023/04/07/8-打字切水果_20230407103221A025.pdf\"}', 0, NULL, '2023-04-07 10:32:21');
+INSERT INTO `sys_oper_log` VALUES (307, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"sb3\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/sb3/2023/04/07/SL1-8 打字切水果（教学）_20230407103231A026.sb3\"}', 0, NULL, '2023-04-07 10:32:31');
+INSERT INTO `sys_oper_log` VALUES (308, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"pdf\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/pdf/2023/04/07/9-无人车_20230407103414A027.pdf\"}', 0, NULL, '2023-04-07 10:34:14');
+INSERT INTO `sys_oper_log` VALUES (309, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"sb3\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/sb3/2023/04/07/SL1-9 无人车（教学）_20230407103433A028.sb3\"}', 0, NULL, '2023-04-07 10:34:33');
+INSERT INTO `sys_oper_log` VALUES (310, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"pdf\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/pdf/2023/04/07/10-玩仔酷跑_20230407103514A029.pdf\"}', 0, NULL, '2023-04-07 10:35:14');
+INSERT INTO `sys_oper_log` VALUES (311, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"sb3\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/sb3/2023/04/07/SL1-10 玩仔酷跑（教学）_20230407103530A030.sb3\"}', 0, NULL, '2023-04-07 10:35:30');
+INSERT INTO `sys_oper_log` VALUES (312, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"pdf\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/pdf/2023/04/07/11-太阳月亮和地球_20230407103616A031.pdf\"}', 0, NULL, '2023-04-07 10:36:16');
+INSERT INTO `sys_oper_log` VALUES (313, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"sb3\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/sb3/2023/04/07/SL1-11 太阳月亮和地球（教学）_20230407103627A032.sb3\"}', 0, NULL, '2023-04-07 10:36:27');
+INSERT INTO `sys_oper_log` VALUES (314, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"pdf\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/pdf/2023/04/07/12-捕鱼达人_20230407103758A033.pdf\"}', 0, NULL, '2023-04-07 10:37:58');
+INSERT INTO `sys_oper_log` VALUES (315, '课程相关上传', 2, 'com.ruoyi.web.controller.system.SysProfileController.shbjectImage()', 'POST', 1, 'admin', NULL, '/system/user/profile/subject_upload', '124.240.88.133', 'XX XX', '\"sb3\"', '{\"msg\":\"操作成功\",\"code\":200,\"url\":\"/profile/subject/sb3/2023/04/07/level1-12 捕鱼达人-教学_20230407103806A034.sb3\"}', 0, NULL, '2023-04-07 10:38:06');
 
 -- ----------------------------
 -- Table structure for sys_post
@@ -1363,7 +1456,7 @@ CREATE TABLE `sys_role`  (
 -- ----------------------------
 INSERT INTO `sys_role` VALUES (1, '超级管理员', 'admin', 1, '1', 1, 1, '0', '0', 'admin', '2022-12-21 18:19:33', '', NULL, '超级管理员');
 INSERT INTO `sys_role` VALUES (2, '账号创建数量限制', 'userCreateLimit', 2, '1', 0, 0, '0', '0', 'admin', '2023-03-19 10:47:03', 'admin', '2023-03-19 22:20:59', '用于限制账号创建数量，当前版本仅”校长“角色需要选择');
-INSERT INTO `sys_role` VALUES (3, '校长', 'schoolmaster', 3, '1', 0, 0, '0', '0', 'admin', '2023-03-08 10:06:57', 'admin', '2023-03-19 14:33:56', '校长');
+INSERT INTO `sys_role` VALUES (3, '校长', 'schoolmaster', 3, '1', 0, 0, '0', '0', 'admin', '2023-03-08 10:06:57', 'admin', '2023-04-06 11:15:56', '校长');
 INSERT INTO `sys_role` VALUES (4, '教师', 'teacher', 4, '2', 0, 0, '0', '0', 'admin', '2022-12-21 18:19:33', 'admin', '2023-03-19 22:21:56', '教师');
 INSERT INTO `sys_role` VALUES (5, '学生', 'student', 5, '3', 0, 0, '0', '0', 'admin', '2022-12-21 18:19:33', 'admin', '2023-03-19 22:22:22', '学生');
 
@@ -1422,6 +1515,9 @@ INSERT INTO `sys_role_menu` VALUES (3, 1078);
 INSERT INTO `sys_role_menu` VALUES (3, 1079);
 INSERT INTO `sys_role_menu` VALUES (3, 1080);
 INSERT INTO `sys_role_menu` VALUES (3, 1081);
+INSERT INTO `sys_role_menu` VALUES (3, 1082);
+INSERT INTO `sys_role_menu` VALUES (3, 1083);
+INSERT INTO `sys_role_menu` VALUES (3, 1084);
 INSERT INTO `sys_role_menu` VALUES (4, 1);
 INSERT INTO `sys_role_menu` VALUES (4, 12);
 INSERT INTO `sys_role_menu` VALUES (4, 13);
@@ -1457,7 +1553,7 @@ CREATE TABLE `sys_student_subject`  (
   `class_id` int(11) NULL DEFAULT NULL COMMENT '关联班级id',
   `subject_id` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 48 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 52 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_student_subject
@@ -1468,8 +1564,29 @@ INSERT INTO `sys_student_subject` VALUES (42, 123, 73, '0', 0, 8, 24);
 INSERT INTO `sys_student_subject` VALUES (43, 123, 74, '0', 0, 8, 24);
 INSERT INTO `sys_student_subject` VALUES (44, 123, 75, '0', 0, 8, 24);
 INSERT INTO `sys_student_subject` VALUES (45, 123, 17, '0', 0, 7, 13);
-INSERT INTO `sys_student_subject` VALUES (46, 127, 17, '0', 0, 7, 13);
-INSERT INTO `sys_student_subject` VALUES (47, 127, 18, '0', 0, 7, 13);
+INSERT INTO `sys_student_subject` VALUES (48, 127, 17, '1', 0, 7, 13);
+INSERT INTO `sys_student_subject` VALUES (49, 127, 18, '1', 0, 7, 13);
+INSERT INTO `sys_student_subject` VALUES (50, 127, 65, '1', 0, 9, 19);
+INSERT INTO `sys_student_subject` VALUES (51, 127, 66, '1', 0, 9, 19);
+
+-- ----------------------------
+-- Table structure for sys_student_subsection
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_student_subsection`;
+CREATE TABLE `sys_student_subsection`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NULL DEFAULT NULL,
+  `subsection_id` int(11) NULL DEFAULT NULL,
+  `file_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `update_time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `user_id`(`user_id`) USING BTREE,
+  INDEX `subsection_id`(`subsection_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_student_subsection
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for sys_subject
@@ -1518,66 +1635,68 @@ CREATE TABLE `sys_subject_info`  (
   `status` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `type` int(11) NULL DEFAULT NULL,
+  `pdf_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'pdf的地址',
   PRIMARY KEY (`subject_info_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 76 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 77 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_subject_info
 -- ----------------------------
-INSERT INTO `sys_subject_info` VALUES (17, 13, '我的“名片”', '在这节课中我们将引导学生认识和探索Scratch，通过实践对编程形成一个初步认识，最终完成一个关于自我介绍的作品。', '1.认识Scratch\n2.电脑操作\n3.理解事件概念\n4.添加角色\n5.设置背景\n6.录制声音\n7.保存与发布', NULL, 0, 0, '1', '/profile/subject/pdf/2023/03/25/1-我的名片_20230325230459A007.pdf', 3);
-INSERT INTO `sys_subject_info` VALUES (18, 13, '魔法魁地奇', '介绍关于魁地奇的课外知识，通过编程实现上下左右按键的控制角色移动，最终完成魁地奇游戏。', '1.键盘控制角色\n2.方向概念', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (19, 13, '自动寻宝', '在这节课通过学生动手实践，了解什么是重复执行循坏语句，并通过编程完成一个自动寻宝的游戏。', '1.程序嵌套\n2.鼠标操作\n3.循坏语句', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (20, 13, '地球保卫战', '科普学生科学知识，学生完成其中一个角色，通过鼠标操作，完成地球保卫战游戏。', '1.鼠标操作\n2.天文知识\n3.坐标概念', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (21, 13, '植物灌溉', '通过科普水生花卉，陆生花卉，耐旱花卉的区别，通过编程完成模拟不同水量浇花效果。', '1 了解不同品种的花卉对水的需求不同\n2 培养分类判断的能力', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (22, 13, '幸运大转盘', '通过一系列体验和观察活动理解随机的概念，然后在制作幸运转盘项目中应用随机的思想。', '1.随机的概念\n2.随机的应用', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (23, 13, '七色彩虹圈', '采用教具教学生先使绘制出一些基础图形（三角形、圆形、矩形等），了解他们的特点。使用画笔，绘制一幅漂亮的画作。', '1.颜色\n2.基本简单几何图形', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (24, 13, '打字切水果', '在这节课通过学生动手实践，了解什么是如果...那么...条件语句，通过教学生编写打字切水果的游戏，让学生在编程中再次实践条件语句，还能教学生制作一个', '1.对键盘有更深的了解\n2.了解什么是如果...那么条件判断语句\n3.造型切换', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (25, 13, '无人车', '在这节课我们将给大家科普什么是无人驾驶，通过编程的条件语句以及颜色侦测，实现无人驾驶的效果。', '1.了解现在得无人驾驶新技术\n2.条件语句\n3.程序嵌套', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (26, 13, '玩仔酷跑', '科普学生坐标在生活中运用，教学生写一个跳跃、酷跑类游戏，再编程中实践坐标的作用。', '1.坐标\n2.Y坐标增加', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (27, 13, '太阳月亮和地球', '这节课给大家科普太阳，月亮和地球的关系，并且用编程实现他们的模拟运动效果', '1. 了解太阳月亮地球科学知识\n2 理解圆周运动的特点一圈是360°以及旋转中心', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (28, 13, '捕鱼达人', '学生体验捕鱼达人游戏，分析捕鱼流程，用编程完成一个捕鱼达人游戏。', '1.理解或、且的含义\n2. 理解重复执行和重复执行直到', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (29, 14, '冰与火之战', '通过括号图对程序进行拆解，了解什么是括号图、括号图在生活中的使用；通过绘制“冰”“火”角色，了解矢量图各种工具的作用。', '1、了解矢量图各种工具的作用及使用\n2、了解什么是“括号图”\n3、“括号图”的应用', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (30, 14, '绽放的烟花', '在本节课中，学生将学习一些图形特效，并结合运动功能的实现方法，完成一个烟花绽放的动画。', '1、了解颜色和虚像等图形特效；\n2、掌握实现扩散运动的实现方法；', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (31, 14, '班级大合照', '在本节课中，学生将学习图层的概念，并通过编程将一幅打乱图层顺序的班级合照调整成正确透视关系。', '1、理解图层的概念；\n2、掌握设置图层的实现方法；', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (32, 14, '生日贺卡', '在本节课中，学生综合运用前几节课学习的知识和技能，完成一个富有有动画效果、声音效果、运动效果生日贺卡作品。', '1、掌握背景音乐的实现方法；\n2、实践动画效果、声音效果、运动效果的实现方法；\n3、创作一个可以表达自己想法的贺卡类作品；', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (33, 14, '雪地里的小画家', '在本节课中，学生将学习图章的使用，并结合运动功能的实现方法，以“雪地里的小画家”为故事背景，完成一幅画作。', '1、掌握图章和全部擦除的使用方法\n2、理解判断条件和循环指令的嵌套使用', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (34, 14, '金箍驱魔圈', '在本节课中，学生将学习用画笔绘制圆形，然后完成用金箍棒绘制驱魔圈，保护唐僧师徒不受妖怪攻击。', '1、了解数学中的圆\n2、掌握使用画笔绘制圆的方法\n3、“括号图”的应用', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (35, 14, '画龙点睛', '在本节课中，老师通过成语故事画龙点睛引出课程，完成使用画笔给龙的眼睛绘制颜色，最后点击魔法棒，龙身体会变成眼睛的颜色并能够飞行的作品。', '1.复习画笔指令模块。\n2.学习如果那么否则指令，理解如果那么否则的逻辑，并与如果那么指令进行对比，思考两种指令逻辑之间的相同点与不同点。', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (36, 14, '坐井观天', '在本节课中，学生将学习用广播积木，然后完成一个《坐井观天》的成语故事。', '1、理解“广播”指令方块的使用\n2、“流程图”的应用', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (37, 14, '酷玩乐队', '在本节课中，学生将学习演奏鼓声的方法，并通过组合各种打击乐器及节奏编排方式设计完成一支虚拟乐队。', '1、掌握演奏鼓声的方法；\n2、掌握节奏编排的基本方式；', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (38, 14, '舞蹈之王', '在本节课中，学生将学习实现舞蹈动作的动画，并通过各种编排和组合的方式设计完成一套舞蹈动作。', '1、掌握使用制定造型实现动画效果的方法；\n2、掌握设计编排一套舞蹈动作的方法；', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (39, 14, '采集音符', '在本节课中，学生将将认识一下简谱，并学习演奏音符的方法并实现《小星星》里用到的音符，然后按照简谱去完成收集指定音符序列的任务。', '1、了解数字简谱；\n2、掌握演奏音符的方法；\n3、掌握将音符组合成乐曲的方法；', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (40, 14, '音乐视频', '在本节课中，学生将综合运用本阶段学习的知识和技能，设计并创作一个拥有动画效果、声音效果、音乐效果、运动效果的 MV 作品，作为阶段性的学习成果验收。', '1、实践动画效果、声音效果、音乐效果、运动效果的实现方法；\n2、创作一个可以表达自己想法的音乐视频类作品；', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (41, 15, '交通信号灯', '在本节课中，学生将学习关于交通信号灯的知识，并通过动作类指令和控制类指令，模拟车辆根据交通信号灯的指示，通过红绿灯的完整过程。', '交通规则；\n了解红灯、黄灯、绿灯之间的变幻规律；\n了解滑行的概念；', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (42, 15, '垃圾分类', '在本节课中，通过向学生科普垃圾对环境的危害，培养学生不乱扔垃圾的好习惯，制作一个通过拖动鼠标对垃圾进行分类的游戏。', '认识不同种类的垃圾；\n了解垃圾分类的重要性；', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (43, 15, '刷牙计划', '在本节课中，通过给学生播放刷牙小视频，科普如何正确刷牙，并带学生制作21天刷牙计划，养成每天早晚正确刷牙好习惯，最后学生跟老师一起完成刷牙计划的游戏。', '理解比较运算中大于、小于和等于的逻辑；\n掌握实现角色随时间不断变换状态的效果的方法；', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (44, 15, '晚餐的选择', '在本节课中，老师将通过和学生讨论一顿健康的晚餐怎么吃，引出本节课游戏，晚餐的选择，每个学生选择自己的晚餐，然后计算热量是否在450~525大卡范围之内。', '巩固比较运算中大于、小于和等于的逻辑；\n理解如果那么的否则的嵌套逻辑；', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (45, 15, '时间管理', '本节课中，会用程序制作一个时钟，学生可以自己设定一些特定时间，让时钟发出提醒，提高孩子的时间管理观念。', '认识时钟的时针、分针、秒针之间关系；\n树立时间管理的观念；\n对比碰到颜色和角色指令的异同；', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (46, 15, '包粽子', '在本节课中，老师带领学生一起总结节气习俗、学习克隆知识完成端午节包粽子的游戏。', '学习克隆指令方块；\n理解克隆体和本体的区别；', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (47, 15, '认识国家', '在本节课中，教师将带领学生完成一个\'认识国家\"的游戏，丰富学生的课外见识。', '从地图和国旗来认识国家，增强学生的课外见识；\n通过程序的完成让学生了解有关这些国家的国旗、国歌、国花、以及首都的课\n外信息；', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (48, 15, '小蝌蚪找妈妈', '在本节课，教师科普青蛙的生长发展规律，制作一个小蝌蚪找妈妈的小故事。', '认识思维导图；\n用思维导图细分青蛙的生长规律；', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (49, 15, '伪装者', '在本节课中，学生将了解自然界动物的特点，利用程序，制作一个\"伪装者\'游戏，尝试将画面中的伪装者找出来。', '了解动物伪装的目的；\n伪装特点;\n角色上传；\n背景上传；', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (50, 15, '认识太阳系', '在本节课中，学生将认识太阳系，并利用编程实现给八大行星进行位置排列。', '了解什么是太阳系；\n认识八大行星；\n了解序列；', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (51, 15, '日食月食', '在本节课中，学生了解“日食、月食”原理，月亮、太阳的变化规律。用scratch模拟月食特点。', '回顾地球、月球运动规律；\n了解日食、月食的产生的原理；\n掌握怎么利用Scratch复原月食现象的方法', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (52, 15, '神奇的斑点', '本节课中，学生将体验一个神奇的视觉错觉现象，并设计一个程序来演示这种现象。', '巩固圆形结构的实现方式；\n巩固\"如果那么否则\"的逻辑；\n巩固比较运算的应用；', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (53, 16, '小猫学说话', '在本节课中，学生将学习简单的语法规则，然后通过编程，将不同类的词组组合起来，生成符合语法规则的句子。', '了解简单的造句；\n了解列表概念；', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (54, 16, '看图猜成语', '在本节课中，将成语的内容用背景图画展示，进行成语问答游戏，带学生学习成语知识，同时学会将生活中学习的知识应用到scratch作品创作中去。', '学会使用询问指令制作问答类作品；\n认识判断指令及运算指令对正误的判断设置原理；', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (55, 16, '乌鸦喝水', '在本节课中，通过程序编写一个乌鸦喝水的小游戏。', '认识喝水的本质，学会逆向思考解决问题；\n通过实验，增强学生的动手能力；\n掌握多种实现角色的移动效果的方法；', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (56, 16, '水果课堂', '本节课，学生将认识不同的水果其对应的英文名字，利用Scratch制作一个英语课堂小活动的问答游戏。', '认识水果单词；\n了解广播和广播并等待的区别；\n翻译代码块的灵活运用(拓展)；\n声音朗读代码块的灵活运用(拓展)；', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (57, 16, '玩仔翻译器', '在本节课中，通过编程设计一个中译英，英译中的翻译工具。', '了解翻译拓展；\n灵活使用将...译为中文/英文；', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (58, 16, '公鸡下蛋', '在本节课中，通过编程，设计一个接鸡蛋的小游戏。', '坐标的灵活运用；\n灵活使用克隆代码；\n', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (59, 16, '玩仔计算器', '在本节课中，学生将利用询问和回答，制作一个可以做加减运算的程序。', '加、减法运算规则；\n询问、回答的灵活运用；', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (60, 16, '计算大王', '在本节课中，学生通过综合运用询问/回答、变量、以及条件判断等知识，设计一个能够随机出题的计算游戏。', '认识变量并掌握变量的基础应用；\n深化对条件判断逻辑的理解；\n强化对数学加减运算的理解，锻炼心算能力;', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (61, 16, '拼图游戏', '在本节课中，学生将利用鼠标和键盘，移动角色位置，改变角色的方向，通过想象力拼接七巧板，完成不同的动物形象。', '利用鼠标，控制移动多个角色的位置；\n按键控制角色的方向；\n会使用变量标志位；', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (62, 16, '眼力挑战', '在本节课中，学生将使用克隆变换角色不同造型，制作一考验观察力的游戏。', '变量的使用；\n学会区分表示当前角色和其它角色造型编号；\n克隆体的启动；', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (63, 16, '小老鼠找奶酪', '在本节课中，学生将运用前面学习过的知识点制作一个老鼠在迷宫中躲避猫咪，找到奶酪的游戏。', '能够梳理清楚整个游戏逻辑；\n复习广播、且、判断语句；', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (64, 16, '玩仔接苹果', '在本节课中，老师将带领学生一起完成鼠标指针控制玩仔左右移动，接树上掉下来的苹果，躲避虫子的游戏。', '能够梳理清楚整个游戏逻辑；\n复习随机数以及坐标知识；', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (65, 19, '紧急！虎口脱险！', '周周、玩仔、乐乐三人在科技馆内参观MC展览时触碰了机关，地球变成了MC世界，被末影龙追赶的三人决定利用Scratch法宝变身为怪物躲避末影龙，但是，最后乐乐未能逃脱，被末影龙抓走。', '了解scratc3.0界面；造型切换；说；想；将…译为;等待几秒；当角色被点击；当按下某个键；显示与隐藏；移到x,y；播放声音。', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (66, 19, '强大！装备升级！', '为了要从末影龙手中救出乐乐，经先知指点，周周和玩仔要努力找寻钻石和南瓜，最后将武器升级成铁傀儡和钻石剑。带上他们才有机会打败末影龙。于是，周周和玩仔开始了收集武器，升级装备之旅。', '移动几步；1秒内滑行到；当按下右移键；重复执行；如果...那么...；碰到；移到最上/下层；广播；停止当前脚本。', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (67, 19, '激战！末地营救！', '周周、玩仔和铁傀儡来到了末路之地，发现了前方有一个迷宫，并且有许多末影人和末影螨在看守，周周手握强大的钻石剑英雄附体独自一人穿行迷宫找到密室的钥匙，打开了机关密室，消灭了末影龙，最后将乐乐救出。', '造型切换、重复执行、移到x（）y（）、移到（）、面向（）、移动（）步、碰到（）、（）或（）、重如果那么、复执行几次、广播。', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (68, 19, '收集！治疗药水！', '周周、玩仔和铁傀儡救出乐乐后来到一片树林，乐乐受了重伤急需治疗。玩仔用旋转大法采集治疗果的果汁制成治疗药水，为乐乐疗伤。', '旋转；造型中心；空格键是否按下；造型编号；碰到边缘；分支语句。', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (69, 17, '潜艇大战', '在这节课上 我们会完成一个潜艇大战的游戏，快来帮助周周保卫代码王国吧！', '1. 坐标\n2.随机数\n3. 循环语句\n4.广播\n5.条件与逻辑判断', NULL, 0, 0, '1', NULL, 0);
-INSERT INTO `sys_subject_info` VALUES (70, 18, '狙击外星病毒', '在这节课中，我们将介绍射击类游戏背后的编程逻辑，完成射击类游戏中子弹部分的程序设计。', '1.运算模块2.条件语句3.外观模块4.重复执行。', NULL, 0, 0, '1', NULL, 0);
+INSERT INTO `sys_subject_info` VALUES (17, 13, '我的“名片”', '在这节课中我们将引导学生认识和探索Scratch，通过实践对编程形成一个初步认识，最终完成一个关于自我介绍的作品。', '1.认识Scratch\n2.电脑操作\n3.理解事件概念\n4.添加角色\n5.设置背景\n6.录制声音\n7.保存与发布', NULL, 0, 0, '1', '/profile/subject/pdf/2023/04/05/1-我的名片_20230405174738A001.pdf', 0, '/profile/subject/pdf/2023/04/07/1-我的名片_20230407101230A009.pdf');
+INSERT INTO `sys_subject_info` VALUES (18, 13, '魔法魁地奇', '介绍关于魁地奇的课外知识，通过编程实现上下左右按键的控制角色移动，最终完成魁地奇游戏。', '1.键盘控制角色\n2.方向概念', NULL, 0, 0, '1', NULL, 0, '/profile/subject/pdf/2023/04/07/2-魔法魁地奇_20230407102345A010.pdf');
+INSERT INTO `sys_subject_info` VALUES (19, 13, '自动寻宝', '在这节课通过学生动手实践，了解什么是重复执行循坏语句，并通过编程完成一个自动寻宝的游戏。', '1.程序嵌套\n2.鼠标操作\n3.循坏语句', NULL, 0, 0, '1', NULL, 0, '/profile/subject/pdf/2023/04/07/3-自动寻宝_20230407102400A011.pdf');
+INSERT INTO `sys_subject_info` VALUES (20, 13, '地球保卫战', '科普学生科学知识，学生完成其中一个角色，通过鼠标操作，完成地球保卫战游戏。', '1.鼠标操作\n2.天文知识\n3.坐标概念', NULL, 0, 0, '1', NULL, 0, '/profile/subject/pdf/2023/04/07/4-地球保卫战_20230407102523A014.pdf');
+INSERT INTO `sys_subject_info` VALUES (21, 13, '植物灌溉', '通过科普水生花卉，陆生花卉，耐旱花卉的区别，通过编程完成模拟不同水量浇花效果。', '1 了解不同品种的花卉对水的需求不同\n2 培养分类判断的能力', NULL, 0, 0, '1', NULL, 0, '/profile/subject/pdf/2023/04/07/5-植物灌溉_20230407102654A016.pdf');
+INSERT INTO `sys_subject_info` VALUES (22, 13, '幸运大转盘', '通过一系列体验和观察活动理解随机的概念，然后在制作幸运转盘项目中应用随机的思想。', '1.随机的概念\n2.随机的应用', NULL, 0, 0, '1', NULL, 0, '/profile/subject/pdf/2023/04/07/6-幸运大转盘_20230407102720A018.pdf');
+INSERT INTO `sys_subject_info` VALUES (23, 13, '七色彩虹圈', '采用教具教学生先使绘制出一些基础图形（三角形、圆形、矩形等），了解他们的特点。使用画笔，绘制一幅漂亮的画作。', '1.颜色\n2.基本简单几何图形', NULL, 0, 0, '1', NULL, 0, '/profile/subject/pdf/2023/04/07/7-七色彩虹圈_20230407103033A023.pdf');
+INSERT INTO `sys_subject_info` VALUES (24, 13, '打字切水果', '在这节课通过学生动手实践，了解什么是如果...那么...条件语句，通过教学生编写打字切水果的游戏，让学生在编程中再次实践条件语句，还能教学生制作一个', '1.对键盘有更深的了解\n2.了解什么是如果...那么条件判断语句\n3.造型切换', NULL, 0, 0, '1', NULL, 0, '/profile/subject/pdf/2023/04/07/8-打字切水果_20230407103221A025.pdf');
+INSERT INTO `sys_subject_info` VALUES (25, 13, '无人车', '在这节课我们将给大家科普什么是无人驾驶，通过编程的条件语句以及颜色侦测，实现无人驾驶的效果。', '1.了解现在得无人驾驶新技术\n2.条件语句\n3.程序嵌套', NULL, 0, 0, '1', NULL, 0, '/profile/subject/pdf/2023/04/07/9-无人车_20230407103414A027.pdf');
+INSERT INTO `sys_subject_info` VALUES (26, 13, '玩仔酷跑', '科普学生坐标在生活中运用，教学生写一个跳跃、酷跑类游戏，再编程中实践坐标的作用。', '1.坐标\n2.Y坐标增加', NULL, 0, 0, '1', NULL, 0, '/profile/subject/pdf/2023/04/07/10-玩仔酷跑_20230407103514A029.pdf');
+INSERT INTO `sys_subject_info` VALUES (27, 13, '太阳月亮和地球', '这节课给大家科普太阳，月亮和地球的关系，并且用编程实现他们的模拟运动效果', '1. 了解太阳月亮地球科学知识\n2 理解圆周运动的特点一圈是360°以及旋转中心', NULL, 0, 0, '1', NULL, 0, '/profile/subject/pdf/2023/04/07/11-太阳月亮和地球_20230407103616A031.pdf');
+INSERT INTO `sys_subject_info` VALUES (28, 13, '捕鱼达人', '学生体验捕鱼达人游戏，分析捕鱼流程，用编程完成一个捕鱼达人游戏。', '1.理解或、且的含义\n2. 理解重复执行和重复执行直到', NULL, 0, 0, '1', NULL, 0, '/profile/subject/pdf/2023/04/07/12-捕鱼达人_20230407103758A033.pdf');
+INSERT INTO `sys_subject_info` VALUES (29, 14, '冰与火之战', '通过括号图对程序进行拆解，了解什么是括号图、括号图在生活中的使用；通过绘制“冰”“火”角色，了解矢量图各种工具的作用。', '1、了解矢量图各种工具的作用及使用\n2、了解什么是“括号图”\n3、“括号图”的应用', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (30, 14, '绽放的烟花', '在本节课中，学生将学习一些图形特效，并结合运动功能的实现方法，完成一个烟花绽放的动画。', '1、了解颜色和虚像等图形特效；\n2、掌握实现扩散运动的实现方法；', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (31, 14, '班级大合照', '在本节课中，学生将学习图层的概念，并通过编程将一幅打乱图层顺序的班级合照调整成正确透视关系。', '1、理解图层的概念；\n2、掌握设置图层的实现方法；', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (32, 14, '生日贺卡', '在本节课中，学生综合运用前几节课学习的知识和技能，完成一个富有有动画效果、声音效果、运动效果生日贺卡作品。', '1、掌握背景音乐的实现方法；\n2、实践动画效果、声音效果、运动效果的实现方法；\n3、创作一个可以表达自己想法的贺卡类作品；', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (33, 14, '雪地里的小画家', '在本节课中，学生将学习图章的使用，并结合运动功能的实现方法，以“雪地里的小画家”为故事背景，完成一幅画作。', '1、掌握图章和全部擦除的使用方法\n2、理解判断条件和循环指令的嵌套使用', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (34, 14, '金箍驱魔圈', '在本节课中，学生将学习用画笔绘制圆形，然后完成用金箍棒绘制驱魔圈，保护唐僧师徒不受妖怪攻击。', '1、了解数学中的圆\n2、掌握使用画笔绘制圆的方法\n3、“括号图”的应用', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (35, 14, '画龙点睛', '在本节课中，老师通过成语故事画龙点睛引出课程，完成使用画笔给龙的眼睛绘制颜色，最后点击魔法棒，龙身体会变成眼睛的颜色并能够飞行的作品。', '1.复习画笔指令模块。\n2.学习如果那么否则指令，理解如果那么否则的逻辑，并与如果那么指令进行对比，思考两种指令逻辑之间的相同点与不同点。', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (36, 14, '坐井观天', '在本节课中，学生将学习用广播积木，然后完成一个《坐井观天》的成语故事。', '1、理解“广播”指令方块的使用\n2、“流程图”的应用', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (37, 14, '酷玩乐队', '在本节课中，学生将学习演奏鼓声的方法，并通过组合各种打击乐器及节奏编排方式设计完成一支虚拟乐队。', '1、掌握演奏鼓声的方法；\n2、掌握节奏编排的基本方式；', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (38, 14, '舞蹈之王', '在本节课中，学生将学习实现舞蹈动作的动画，并通过各种编排和组合的方式设计完成一套舞蹈动作。', '1、掌握使用制定造型实现动画效果的方法；\n2、掌握设计编排一套舞蹈动作的方法；', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (39, 14, '采集音符', '在本节课中，学生将将认识一下简谱，并学习演奏音符的方法并实现《小星星》里用到的音符，然后按照简谱去完成收集指定音符序列的任务。', '1、了解数字简谱；\n2、掌握演奏音符的方法；\n3、掌握将音符组合成乐曲的方法；', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (40, 14, '音乐视频', '在本节课中，学生将综合运用本阶段学习的知识和技能，设计并创作一个拥有动画效果、声音效果、音乐效果、运动效果的 MV 作品，作为阶段性的学习成果验收。', '1、实践动画效果、声音效果、音乐效果、运动效果的实现方法；\n2、创作一个可以表达自己想法的音乐视频类作品；', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (41, 15, '交通信号灯', '在本节课中，学生将学习关于交通信号灯的知识，并通过动作类指令和控制类指令，模拟车辆根据交通信号灯的指示，通过红绿灯的完整过程。', '交通规则；\n了解红灯、黄灯、绿灯之间的变幻规律；\n了解滑行的概念；', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (42, 15, '垃圾分类', '在本节课中，通过向学生科普垃圾对环境的危害，培养学生不乱扔垃圾的好习惯，制作一个通过拖动鼠标对垃圾进行分类的游戏。', '认识不同种类的垃圾；\n了解垃圾分类的重要性；', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (43, 15, '刷牙计划', '在本节课中，通过给学生播放刷牙小视频，科普如何正确刷牙，并带学生制作21天刷牙计划，养成每天早晚正确刷牙好习惯，最后学生跟老师一起完成刷牙计划的游戏。', '理解比较运算中大于、小于和等于的逻辑；\n掌握实现角色随时间不断变换状态的效果的方法；', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (44, 15, '晚餐的选择', '在本节课中，老师将通过和学生讨论一顿健康的晚餐怎么吃，引出本节课游戏，晚餐的选择，每个学生选择自己的晚餐，然后计算热量是否在450~525大卡范围之内。', '巩固比较运算中大于、小于和等于的逻辑；\n理解如果那么的否则的嵌套逻辑；', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (45, 15, '时间管理', '本节课中，会用程序制作一个时钟，学生可以自己设定一些特定时间，让时钟发出提醒，提高孩子的时间管理观念。', '认识时钟的时针、分针、秒针之间关系；\n树立时间管理的观念；\n对比碰到颜色和角色指令的异同；', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (46, 15, '包粽子', '在本节课中，老师带领学生一起总结节气习俗、学习克隆知识完成端午节包粽子的游戏。', '学习克隆指令方块；\n理解克隆体和本体的区别；', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (47, 15, '认识国家', '在本节课中，教师将带领学生完成一个\'认识国家\"的游戏，丰富学生的课外见识。', '从地图和国旗来认识国家，增强学生的课外见识；\n通过程序的完成让学生了解有关这些国家的国旗、国歌、国花、以及首都的课\n外信息；', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (48, 15, '小蝌蚪找妈妈', '在本节课，教师科普青蛙的生长发展规律，制作一个小蝌蚪找妈妈的小故事。', '认识思维导图；\n用思维导图细分青蛙的生长规律；', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (49, 15, '伪装者', '在本节课中，学生将了解自然界动物的特点，利用程序，制作一个\"伪装者\'游戏，尝试将画面中的伪装者找出来。', '了解动物伪装的目的；\n伪装特点;\n角色上传；\n背景上传；', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (50, 15, '认识太阳系', '在本节课中，学生将认识太阳系，并利用编程实现给八大行星进行位置排列。', '了解什么是太阳系；\n认识八大行星；\n了解序列；', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (51, 15, '日食月食', '在本节课中，学生了解“日食、月食”原理，月亮、太阳的变化规律。用scratch模拟月食特点。', '回顾地球、月球运动规律；\n了解日食、月食的产生的原理；\n掌握怎么利用Scratch复原月食现象的方法', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (52, 15, '神奇的斑点', '本节课中，学生将体验一个神奇的视觉错觉现象，并设计一个程序来演示这种现象。', '巩固圆形结构的实现方式；\n巩固\"如果那么否则\"的逻辑；\n巩固比较运算的应用；', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (53, 16, '小猫学说话', '在本节课中，学生将学习简单的语法规则，然后通过编程，将不同类的词组组合起来，生成符合语法规则的句子。', '了解简单的造句；\n了解列表概念；', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (54, 16, '看图猜成语', '在本节课中，将成语的内容用背景图画展示，进行成语问答游戏，带学生学习成语知识，同时学会将生活中学习的知识应用到scratch作品创作中去。', '学会使用询问指令制作问答类作品；\n认识判断指令及运算指令对正误的判断设置原理；', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (55, 16, '乌鸦喝水', '在本节课中，通过程序编写一个乌鸦喝水的小游戏。', '认识喝水的本质，学会逆向思考解决问题；\n通过实验，增强学生的动手能力；\n掌握多种实现角色的移动效果的方法；', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (56, 16, '水果课堂', '本节课，学生将认识不同的水果其对应的英文名字，利用Scratch制作一个英语课堂小活动的问答游戏。', '认识水果单词；\n了解广播和广播并等待的区别；\n翻译代码块的灵活运用(拓展)；\n声音朗读代码块的灵活运用(拓展)；', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (57, 16, '玩仔翻译器', '在本节课中，通过编程设计一个中译英，英译中的翻译工具。', '了解翻译拓展；\n灵活使用将...译为中文/英文；', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (58, 16, '公鸡下蛋', '在本节课中，通过编程，设计一个接鸡蛋的小游戏。', '坐标的灵活运用；\n灵活使用克隆代码；\n', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (59, 16, '玩仔计算器', '在本节课中，学生将利用询问和回答，制作一个可以做加减运算的程序。', '加、减法运算规则；\n询问、回答的灵活运用；', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (60, 16, '计算大王', '在本节课中，学生通过综合运用询问/回答、变量、以及条件判断等知识，设计一个能够随机出题的计算游戏。', '认识变量并掌握变量的基础应用；\n深化对条件判断逻辑的理解；\n强化对数学加减运算的理解，锻炼心算能力;', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (61, 16, '拼图游戏', '在本节课中，学生将利用鼠标和键盘，移动角色位置，改变角色的方向，通过想象力拼接七巧板，完成不同的动物形象。', '利用鼠标，控制移动多个角色的位置；\n按键控制角色的方向；\n会使用变量标志位；', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (62, 16, '眼力挑战', '在本节课中，学生将使用克隆变换角色不同造型，制作一考验观察力的游戏。', '变量的使用；\n学会区分表示当前角色和其它角色造型编号；\n克隆体的启动；', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (63, 16, '小老鼠找奶酪', '在本节课中，学生将运用前面学习过的知识点制作一个老鼠在迷宫中躲避猫咪，找到奶酪的游戏。', '能够梳理清楚整个游戏逻辑；\n复习广播、且、判断语句；', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (64, 16, '玩仔接苹果', '在本节课中，老师将带领学生一起完成鼠标指针控制玩仔左右移动，接树上掉下来的苹果，躲避虫子的游戏。', '能够梳理清楚整个游戏逻辑；\n复习随机数以及坐标知识；', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (65, 19, '紧急！虎口脱险！', '周周、玩仔、乐乐三人在科技馆内参观MC展览时触碰了机关，地球变成了MC世界，被末影龙追赶的三人决定利用Scratch法宝变身为怪物躲避末影龙，但是，最后乐乐未能逃脱，被末影龙抓走。', '了解scratc3.0界面；造型切换；说；想；将…译为;等待几秒；当角色被点击；当按下某个键；显示与隐藏；移到x,y；播放声音。', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (66, 19, '强大！装备升级！', '为了要从末影龙手中救出乐乐，经先知指点，周周和玩仔要努力找寻钻石和南瓜，最后将武器升级成铁傀儡和钻石剑。带上他们才有机会打败末影龙。于是，周周和玩仔开始了收集武器，升级装备之旅。', '移动几步；1秒内滑行到；当按下右移键；重复执行；如果...那么...；碰到；移到最上/下层；广播；停止当前脚本。', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (67, 19, '激战！末地营救！', '周周、玩仔和铁傀儡来到了末路之地，发现了前方有一个迷宫，并且有许多末影人和末影螨在看守，周周手握强大的钻石剑英雄附体独自一人穿行迷宫找到密室的钥匙，打开了机关密室，消灭了末影龙，最后将乐乐救出。', '造型切换、重复执行、移到x（）y（）、移到（）、面向（）、移动（）步、碰到（）、（）或（）、重如果那么、复执行几次、广播。', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (68, 19, '收集！治疗药水！', '周周、玩仔和铁傀儡救出乐乐后来到一片树林，乐乐受了重伤急需治疗。玩仔用旋转大法采集治疗果的果汁制成治疗药水，为乐乐疗伤。', '旋转；造型中心；空格键是否按下；造型编号；碰到边缘；分支语句。', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (69, 17, '潜艇大战', '在这节课上 我们会完成一个潜艇大战的游戏，快来帮助周周保卫代码王国吧！', '1. 坐标\n2.随机数\n3. 循环语句\n4.广播\n5.条件与逻辑判断', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (70, 18, '狙击外星病毒', '在这节课中，我们将介绍射击类游戏背后的编程逻辑，完成射击类游戏中子弹部分的程序设计。', '1.运算模块2.条件语句3.外观模块4.重复执行。', NULL, 0, 0, '1', NULL, 0, NULL);
+INSERT INTO `sys_subject_info` VALUES (76, 21, '1', '1', '1', NULL, 0, 0, '1', NULL, 0, '/profile/subject/pdf/2023/04/06/招商银行交易流水(申请时间2023年02月23日09时43分25秒)_20230324185451A001_20230406112412A001.pdf');
 
 -- ----------------------------
 -- Table structure for sys_subject_subsection
@@ -1591,11 +1710,30 @@ CREATE TABLE `sys_subject_subsection`  (
   `file_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `status` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 26 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_subject_subsection
 -- ----------------------------
+INSERT INTO `sys_subject_subsection` VALUES (7, 17, '1-Scratch初体验', NULL, '/profile/subject/sb3/2023/04/06/空白界面_20230406233003A002.sb3', '1');
+INSERT INTO `sys_subject_subsection` VALUES (8, 17, '2-我的名片', NULL, '/profile/subject/sb3/2023/04/06/SL1-1 我的“名片”_20230406233024A003.sb3', '1');
+INSERT INTO `sys_subject_subsection` VALUES (9, 18, '1. 帮玩仔抓住前方的球', NULL, '/profile/subject/sb3/2023/04/07/1. 帮玩仔抓住前方的球-教学_20230407094311A005.sb3', '1');
+INSERT INTO `sys_subject_subsection` VALUES (10, 18, '2. 帮玩仔抓住后方的球', NULL, '/profile/subject/sb3/2023/04/07/2. 帮玩仔抓住后方的球-教学_20230407094414A006.sb3', '1');
+INSERT INTO `sys_subject_subsection` VALUES (11, 18, '3. 教会玩仔上下左右飞行', NULL, '/profile/subject/sb3/2023/04/07/3. 教会玩仔上下左右飞行-教学_20230407094447A007.sb3', '1');
+INSERT INTO `sys_subject_subsection` VALUES (12, 19, '自动寻宝1', NULL, '/profile/subject/sb3/2023/04/07/自动寻宝1（教学）_20230407102438A012.sb3', '1');
+INSERT INTO `sys_subject_subsection` VALUES (13, 19, '自动寻宝2', NULL, '/profile/subject/sb3/2023/04/07/自动寻宝2（教学）_20230407102451A013.sb3', '1');
+INSERT INTO `sys_subject_subsection` VALUES (14, 20, '地球保卫战', NULL, '/profile/subject/sb3/2023/04/07/SL1-4 地球保卫战（教学）_20230407102632A015.sb3', '1');
+INSERT INTO `sys_subject_subsection` VALUES (15, 21, '植物灌溉', NULL, '/profile/subject/sb3/2023/04/07/SL1-5 植物灌溉（教学）_20230407102704A017.sb3', '1');
+INSERT INTO `sys_subject_subsection` VALUES (16, 22, '1. 掷色子', NULL, '/profile/subject/sb3/2023/04/07/1. 掷色子-教学_20230407102732A019.sb3', '1');
+INSERT INTO `sys_subject_subsection` VALUES (17, 22, '2. 掷硬币', NULL, '/profile/subject/sb3/2023/04/07/2. 掷硬币-教学_20230407102744A020.sb3', '1');
+INSERT INTO `sys_subject_subsection` VALUES (18, 22, '3. 捉迷藏', NULL, '/profile/subject/sb3/2023/04/07/3. 捉迷藏-教学_20230407102759A021.sb3', '1');
+INSERT INTO `sys_subject_subsection` VALUES (19, 22, '4. 幸运转盘', NULL, '/profile/subject/sb3/2023/04/07/4. 幸运转盘-教学_20230407102816A022.sb3', '1');
+INSERT INTO `sys_subject_subsection` VALUES (20, 23, '7.七色彩虹圈', NULL, '/profile/subject/sb3/2023/04/07/SL1-7 七色彩虹圈（教学）_20230407103042A024.sb3', '1');
+INSERT INTO `sys_subject_subsection` VALUES (21, 24, '8.打字切水果', NULL, '/profile/subject/sb3/2023/04/07/SL1-8 打字切水果（教学）_20230407103231A026.sb3', '1');
+INSERT INTO `sys_subject_subsection` VALUES (22, 25, '无人车', NULL, '/profile/subject/sb3/2023/04/07/SL1-9 无人车（教学）_20230407103433A028.sb3', '1');
+INSERT INTO `sys_subject_subsection` VALUES (23, 26, '玩仔酷跑', NULL, '/profile/subject/sb3/2023/04/07/SL1-10 玩仔酷跑（教学）_20230407103530A030.sb3', '1');
+INSERT INTO `sys_subject_subsection` VALUES (24, 27, '太阳月亮和地球', NULL, '/profile/subject/sb3/2023/04/07/SL1-11 太阳月亮和地球（教学）_20230407103627A032.sb3', '1');
+INSERT INTO `sys_subject_subsection` VALUES (25, 28, '捕鱼达人', NULL, '/profile/subject/sb3/2023/04/07/level1-12 捕鱼达人-教学_20230407103806A034.sb3', '1');
 
 -- ----------------------------
 -- Table structure for sys_subject_type
@@ -1647,10 +1785,10 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 0, 'admin', '超级管理员', '00', '624494955@qq.com', '13434009910', '0', '/profile/avatar/2023/03/19/blob_20230319221821A002.png', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '124.240.95.90', '2023-03-25 22:58:53', 'admin', '2022-12-21 18:19:33', '', '2023-03-25 22:58:53', '超级管理员', 1);
+INSERT INTO `sys_user` VALUES (1, 0, 'admin', '超级管理员', '00', '624494955@qq.com', '13434009910', '0', '/profile/avatar/2023/03/19/blob_20230319221821A002.png', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '120.236.76.103', '2023-04-07 18:15:05', 'admin', '2022-12-21 18:19:33', '', '2023-04-07 18:15:04', '超级管理员', 1);
 INSERT INTO `sys_user` VALUES (125, 104, 'hyxz', '虎英校长', '00', '', '', '0', '', '$2a$10$pNr8GzhJbDZLgMTx7h259eQRO.mDqOu09h4mYc.Kjk0XdFRSri3M.', '0', '0', '', NULL, 'admin', '2023-03-24 22:56:52', '', NULL, NULL, 1);
 INSERT INTO `sys_user` VALUES (126, 104, 'hyjs', '虎英教师', '00', '', '', '0', '', '$2a$10$PM7hRtP8AJ5DY6uNpfwsMOcAUwbe4CZ0Qc/Ev4Jm2AFaZMLp3rt8.', '0', '0', '', NULL, 'admin', '2023-03-24 22:57:20', '', NULL, NULL, 1);
-INSERT INTO `sys_user` VALUES (127, 104, 'hyxs', '虎英学生', '00', '', '', '0', '', '$2a$10$Onq.GrYbitKdRoxnd2bqbO3xi6Ok2TqnuwGRC39vaQ4kglu.cM1Zm', '0', '0', '115.173.52.95', '2023-03-24 23:00:21', 'admin', '2023-03-24 22:59:00', '', '2023-03-24 23:00:21', NULL, 1);
+INSERT INTO `sys_user` VALUES (127, 104, 'hyxs', '虎英学生', '00', '', '', '0', '', '$2a$10$Onq.GrYbitKdRoxnd2bqbO3xi6Ok2TqnuwGRC39vaQ4kglu.cM1Zm', '0', '0', '113.78.25.135', '2023-04-01 09:46:42', 'admin', '2023-03-24 22:59:00', '', '2023-04-01 09:46:42', NULL, 1);
 
 -- ----------------------------
 -- Table structure for sys_user_create
