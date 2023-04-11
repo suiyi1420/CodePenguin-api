@@ -114,7 +114,8 @@
             <if test="video_url != null and video_url != ''">video_url = #{video_url},</if>
             <if test="file_url != null and file_url != ''">file_url = #{file_url},</if>
 
-            <if test="status != null ">status=#{status}</if>
+            <if test="status != null ">status=#{status},</if>
+            <if test="type != null ">type=#{type}</if>
 
         </set>
         where id = #{id}
@@ -127,8 +128,8 @@
     </insert>
 
     <insert id="insertSubjectSubsection" parameterType="SysSubjectSubsection">
-        insert into sys_subject_subsection(subject_info_id, name, video_url, file_url, status)
-        values (#{subject_info_id}, #{name}, #{video_url}, #{file_url}, 1)
+        insert into sys_subject_subsection(subject_info_id, name, video_url, file_url, status,type)
+        values (#{subject_info_id}, #{name}, #{video_url}, #{file_url}, 1,#{type})
 
     </insert>
 
