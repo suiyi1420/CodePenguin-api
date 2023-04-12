@@ -27,4 +27,5 @@ public interface SysSubjectMapper {
     public List<SysSubject> getSubjectListByUser(Map<String,Integer> map);
     public List<SysSubjectInfo> getSubjectInfoListByUser(Map<String,Object> map);
     public int deleteSubjectSubsection(int id);
+    public int deleteSubjectInfo(Long id);
 }

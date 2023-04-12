@@ -108,4 +108,8 @@ public class SysSubjectServiceImpl implements ISysSubjectService {
     public int deleteSubjectSubsection(int id){
         return sysSubjectMapper.deleteSubjectSubsection(id);
     }
+    @Override
+    public int deleteSubjectInfo(Long id){
+        return sysSubjectMapper.deleteSubjectInfo(id);
+    }
 }

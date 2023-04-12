@@ -113,7 +113,21 @@ public class SysSubjectController extends BaseController {
     {
         return toAjax(iSysSubjectService.updateSubjectInfo(sysSubjectInfo));
     }
+    @PreAuthorize("@ss.hasPermi('system:subject_info:delete')")
+    @PostMapping("/subject_info/delete/{subject_info_id}")
+    public AjaxResult deleteSubjectInfo(@PathVariable(value="subject_info_id") Long subject_info_id)
+    {
+        SysQueryDto sysQueryDto=new SysQueryDto();
+        sysQueryDto.setId(subject_info_id);
+        sysQueryDto.setKeyWord("");
+        List<SysSubjectSubsection> list=iSysSubjectService.getSubsectionList(sysQueryDto);
+        if(list.size()>0){
+            return AjaxResult.error("该课程还存在小节，不允许删除");
+        }else{
+            return toAjax(iSysSubjectService.deleteSubjectInfo(subject_info_id));
+        }
 
+    }
 
 
 

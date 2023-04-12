@@ -166,6 +166,11 @@
         set status=0
         where subject_id = #{id}
     </delete>
+    <delete id="deleteSubjectInfo" parameterType="long">
+        delete from
+        sys_subject_info
+        where subject_info_id = #{id}
+    </delete>
 
 
 </mapper>

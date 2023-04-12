@@ -27,5 +27,6 @@ public interface ISysSubjectService {
     public List<SysSubject> getSubjectListByUser(Integer userId,Integer subjectTypeId);
     public List<SysSubjectInfo> getSubjectInfoListByUser(Map<String,Object> map);
     public int deleteSubjectSubsection(int id);
+    public int deleteSubjectInfo(Long id);
 
 }
