@@ -64,7 +64,7 @@ public class SysClassController extends BaseController {
         return AjaxResult.success(list);
     }
     //根据课程详情id获取课程小节
-    @PreAuthorize("@ss.hasPermi('system:class:list')")
+    @PreAuthorize("@ss.hasPermi('system:subject_subsection:list')")
     @PostMapping("/list/subject/subsection/{id}")
     public AjaxResult getSubjectSubsectionList(@PathVariable(value = "id", required = false) int id)
     {
