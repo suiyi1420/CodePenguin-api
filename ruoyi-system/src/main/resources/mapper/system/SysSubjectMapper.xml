@@ -102,7 +102,8 @@
             <if test="status != null ">status=#{status} ,</if>
             <if test="url != null and url != ''">url=#{url} ,</if>
             <if test="type != null ">type=#{type} ,</if>
-            <if test="pdf_url != null and pdf_url != ''">pdf_url=#{pdf_url}</if>
+            <if test="pdf_url != null and pdf_url != ''">pdf_url=#{pdf_url},</if>
+            <if test="save_file_type != null ">save_file_type=#{save_file_type}</if>
         </set>
         where subject_info_id = #{subject_info_id}
     </update>
@@ -135,9 +136,9 @@
 
     <insert id="insertSubjectInfo" parameterType="SysSubjectInfo">
         insert into sys_subject_info(subject_id, name, context, knowledge, update_text, knowledge_num, planned_time,
-                                     status, url, type, pdf_url)
+                                     status, url, type, pdf_url,save_file_type)
         values (#{subject_id}, #{name}, #{context}, #{knowledge}, #{update_text}, #{knowledge_num}, #{planned_time}, 1,
-                #{url}, #{type}, #{pdf_url})
+                #{url}, #{type}, #{pdf_url},#{save_file_type})
     </insert>
 
     <update id="subsectionCloudAddOrUpdate" parameterType="SysSubsectionFile">

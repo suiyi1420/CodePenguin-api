@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 import com.ruoyi.common.core.domain.TreeSelect;
 import com.ruoyi.common.core.domain.entity.SysMenu;
+import com.ruoyi.common.core.domain.model.LoginUser;
 import com.ruoyi.system.domain.vo.RouterVo;
 
 /**
@@ -49,10 +50,10 @@ public interface ISysMenuService
     /**
      * 根据用户ID查询菜单树信息
      * 
-     * @param userId 用户ID
+     * @param loginUser 用户ID
      * @return 菜单列表
      */
-    public List<SysMenu> selectMenuTreeByUserId(Long userId);
+    public List<SysMenu> selectMenuTreeByUserId(LoginUser loginUser);
 
     /**
      * 根据角色ID查询菜单树信息

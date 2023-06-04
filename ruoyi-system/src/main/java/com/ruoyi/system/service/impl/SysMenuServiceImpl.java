@@ -8,6 +8,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import com.ruoyi.common.core.domain.model.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.common.constant.Constants;
@@ -124,20 +126,21 @@ public class SysMenuServiceImpl implements ISysMenuService
     /**
      * 根据用户ID查询菜单
      * 
-     * @param userId 用户名称
+     * @param loginUser 用户
      * @return 菜单列表
      */
     @Override
-    public List<SysMenu> selectMenuTreeByUserId(Long userId)
+    public List<SysMenu> selectMenuTreeByUserId(LoginUser loginUser)
     {
         List<SysMenu> menus = null;
-        if (SecurityUtils.isAdmin(userId))
+        SysUser sysUser=loginUser.getUser();
+        if (SecurityUtils.isAdmin(sysUser.getRoleId()))
         {
             menus = menuMapper.selectMenuTreeAll();
         }
         else
         {
-            menus = menuMapper.selectMenuTreeByUserId(userId);
+            menus = menuMapper.selectMenuTreeByUserId(loginUser.getUserId());
         }
         return getChildPerms(menus, 0);
     }
