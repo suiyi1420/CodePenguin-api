@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.SysTrendsMapper">
+
+    <select id="selectTrendsList" resultType="Map" parameterType="Map">
+        select t.*,ssi.name,ssi.context,ssi.knowledge,u.nick_name,u.avatar from sys_trends t
+    left join sys_subject ss on ss.subject_type_id = t.subject_type_id and ss.subject_id = t.subject_id
+    left join sys_subject_info ssi on ss.subject_id = ssi.subject_id and t.subject_info_id= ssi.subject_info_id
+            left join sys_user u on u.user_id = t.create_user_id
+<!--        <if test="!isTeacher">-->
+<!--            left join sys_trends_user stu on stu.trends_id = t.id-->
+<!--        </if>-->
+    where 1=1
+      <choose>
+          <when test="isTeacher">
+              and t.create_user_id = #{userId}
+          </when>
+        <otherwise>
+            and FIND_IN_SET(#{userId}, user_ids) > 0
+        </otherwise>
+      </choose>
+    order by t.time desc limit #{offset},#{pageSize}
+
+
+    </select>
+
+
+    <insert id="save" parameterType="SysTrends" >
+        insert into sys_trends (subject_type_id,subject_id,subject_info_id,user_ids,create_user_id,time,content,file_url,file_type) values
+        (#{subjectTypeId},#{subjectId},#{subjectInfoId},#{userIds},#{createUserId},#{time},#{content},#{fileUrl},#{fileType})
+    </insert>
+
+    <delete id="delete" parameterType="Integer">
+        delete from sys_trends where id = #{id}
+    </delete>
+
+
+</mapper> 

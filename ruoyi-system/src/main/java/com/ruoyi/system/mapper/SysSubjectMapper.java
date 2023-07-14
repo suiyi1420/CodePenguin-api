@@ -1,11 +1,12 @@
 package com.ruoyi.system.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.ruoyi.system.domain.*;
 
 import java.util.List;
 import java.util.Map;
 
-public interface SysSubjectMapper {
+public interface SysSubjectMapper extends BaseMapper<SysSubject> {
 
     public List<SysSubjectInfo> getSubjectInfo(SysQueryDto sysQueryDto);
     public SysSubjectInfo getSubjectInfoById(int id);
